@@ -77,3 +77,7 @@ D:\CODE\CongNgheThietKeWeb\QuanLiTinTuc\QuanLiTinTuc\obj\Debug\QuanLiTinTuc.cspr
 D:\CODE\CongNgheThietKeWeb\QuanLiTinTuc\QuanLiTinTuc\obj\Debug\QuanLiTinTuc.csproj.CopyComplete
 D:\CODE\CongNgheThietKeWeb\QuanLiTinTuc\QuanLiTinTuc\obj\Debug\QuanLiTinTuc.dll
 D:\CODE\CongNgheThietKeWeb\QuanLiTinTuc\QuanLiTinTuc\obj\Debug\QuanLiTinTuc.pdb
+D:\CODE\CongNgheThietKeWeb\QuanLiTinTuc\QuanLiTinTuc\bin\EntityFramework.dll
+D:\CODE\CongNgheThietKeWeb\QuanLiTinTuc\QuanLiTinTuc\bin\EntityFramework.SqlServer.dll
+D:\CODE\CongNgheThietKeWeb\QuanLiTinTuc\QuanLiTinTuc\bin\EntityFramework.xml
+D:\CODE\CongNgheThietKeWeb\QuanLiTinTuc\QuanLiTinTuc\bin\EntityFramework.SqlServer.xml

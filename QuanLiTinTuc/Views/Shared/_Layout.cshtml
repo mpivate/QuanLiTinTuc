@@ -182,7 +182,12 @@
                         <img src="~/Scripts/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
+                        <a href="#" class="d-block">
+                            @{
+                                var user = HttpContext.Current.Session["loginName"];
+                                @user
+                            }
+                        </a>
                     </div>
                 </div>
 
@@ -500,19 +505,19 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="/Login/Login" class="nav-link">
+                            <a href="/Home/Login" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
-                                    Đăng kí
+                                    Đăng Nhập
                                 </p>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="/Register/Register" class="nav-link">
+                            <a href="/Home/Register" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
-                                    Đăng Nhập
+                                    Đăng kí
                                 </p>
                             </a>
                         </li>

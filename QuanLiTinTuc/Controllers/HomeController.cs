@@ -13,17 +13,27 @@ namespace QuanLiTinTuc.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Login()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        [HttpPost]
+        public ActionResult Login(string loginName, string password)
         {
-            ViewBag.Message = "Your contact page.";
+            if (loginName.ToLower() == "admin" && password == "1234")
+            {
+                Session["loginName"] = loginName;
+                return RedirectToAction("index");
+            }
+            else
+            {
+                return View();
+            }
+        }
 
+        public ActionResult Register()
+        {
             return View();
         }
     }
