@@ -1,0 +1,167 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE 3 | Registration Page</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Content/plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="~/Content/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Scripts/dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition register-page">
+    <div class="register-box">
+        <div class="register-logo">
+            <a href="/"><b>QL </b>Tin Tức</a>
+        </div>
+
+        <div class="card">
+            <div class="card-body register-card-body">
+                <p class="login-box-msg">Đăng ký thành viên mới</p>
+
+                @* Form đăng kí *@
+            <form method="post" name="form_Register" id="form_Register">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Họ và tên" name="fullName" id="fullName">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+                <span id="war_fullName" class="ml-2 d-none" style="color:red;">Vui lòng nhập Họ và tên!</span>
+                <div class="input-group mt-3">
+                    <input type="text" class="form-control" placeholder="Tên đăng nhập" name="userName" id="userName">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+                <span id="war_userName" class="ml-2 d-none" style="color:red;">Vui lòng nhập tên đăng nhập!</span>
+                <div class="input-group mt-3">
+                    <input type="password" class="form-control" placeholder="Mật khẩu" name="password" id="password">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <span id="war_password" class="ml-2 d-none" style="color:red;">Vui lòng nhập mật khẩu!</span>
+                <div class="input-group mt-3">
+                    <input type="password" class="form-control" placeholder="Xác nhận lại mật khẩu" name="retypePassword" id="retypePassword">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <span id="war_retypePassword" class="ml-2 d-none" style="color:red;">Mật khẩu nhập lại chưa chính xác!</span>
+                <div class="row mt-3">
+                    <div class="col-8">
+                        <div class="icheck-primary">
+                            <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                            <a href="~/QuanLiTaiKhoan/Login" class="text-center">Tôi đã có tài khoản!</a>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-4">
+                        <button type="button" class="btn btn-primary btn-block" id="btn_Submit" name="btn_Submit">Đăng kí</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+            </div>
+            <!-- /.form-box -->
+        </div><!-- /.card -->
+    </div>
+
+    <!-- /.register-box -->
+    <!-- jQuery -->
+    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/Content/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Scripts/dist/js/adminlte.min.js"></script>
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+        $("#btn_Submit").click(function (e) {
+            //check form
+            var check = true;
+            if (!$('#fullName').val()) {
+                $('#war_fullName').removeClass("d-none");
+                check = false;
+            }
+            else $('#war_fullName').addClass("d-none");
+              
+            if (!$('#userName').val()) {
+                $('#war_userName').removeClass("d-none");
+                check = false;
+            }
+            else $('#war_userName').addClass("d-none");
+
+            if (!$('#password').val()) {
+                $('#war_password').removeClass("d-none");
+                check = false;
+            }
+            else $('#war_password').addClass("d-none");
+
+            if (!$('#retypePassword').val()) {
+                $('#war_retypePassword').removeClass("d-none");
+                check = false;                
+            }
+            else $('#war_retypePassword').addClass("d-none");
+
+            
+            //Login Handling
+            if (check) { 
+                var form = $("#form_Register")[0];
+                var formData = new FormData(form);
+
+                $.ajax(
+                    {
+                        type: 'POST',
+                        url: window.location.origin + "/QuanLiTaiKhoan/Register",
+                        data: formData,
+                        contentType: "application/json; charset=utf-8",
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        success: function (response) {
+                            if (response.status == 500) {
+                                $('#war_userName').removeClass("d-none");
+                                $('#war_userName').text(response.message);
+                            }
+                            else {
+                                if ($('#password').val() != $('#retypePassword').val()) {
+                                    $('#war_retypePassword').removeClass("d-none");
+                                    !$('#retypePassword').text('Mật khẩu đã nhập không khớp!');
+                                    return 0;
+                                }
+                                alert('Đăng kí thành công và chuyển sang trang đăng nhập!');
+                                window.location.href = window.location.origin + "/QuanLiTaiKhoan/Login";
+                            }
+                        },
+                        error: function (response) {
+                            
+                            alert('Đăng kí thất bại vui lòng thử lại!');
+                        }
+                    }
+                );
+            }
+        })
+    });
+</script>
