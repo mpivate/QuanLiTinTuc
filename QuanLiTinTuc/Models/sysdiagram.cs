@@ -12,14 +12,12 @@ namespace QuanLiTinTuc.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class BinhLuan
+    public partial class sysdiagram
     {
-        public string MaBinhLuan { get; set; }
-        public string MaTinTuc { get; set; }
-        public string NoiDung { get; set; }
-        public string NguoiBinhLuan { get; set; }
-        public Nullable<System.DateTime> ThoiGianDang { get; set; }
-    
-        public virtual TinTuc TinTuc { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

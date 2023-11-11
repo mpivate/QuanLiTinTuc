@@ -12,6 +12,8 @@ namespace QuanLiTinTuc.Controllers
         {
             return View();
         }
+<<<<<<< Updated upstream
+
         public ActionResult Login()
         {
             return View();
@@ -35,5 +37,8 @@ namespace QuanLiTinTuc.Controllers
         {
             return View();
         }
+=======
+        
+>>>>>>> Stashed changes
     }
 }

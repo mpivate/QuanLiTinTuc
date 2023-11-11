@@ -12,14 +12,12 @@ namespace QuanLiTinTuc.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class BinhLuan
+    public partial class Account
     {
-        public string MaBinhLuan { get; set; }
-        public string MaTinTuc { get; set; }
-        public string NoiDung { get; set; }
-        public string NguoiBinhLuan { get; set; }
-        public Nullable<System.DateTime> ThoiGianDang { get; set; }
-    
-        public virtual TinTuc TinTuc { get; set; }
+        public int id { get; set; }
+        public string UserName { get; set; }
+        public string PassWord { get; set; }
+        public string FullName { get; set; }
+        public string QuyenTruyCap { get; set; }
     }
 }

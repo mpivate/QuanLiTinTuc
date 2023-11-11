@@ -1,0 +1,141 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE 3 | Log in</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Content/plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="~/Content/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Scripts/dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="/"><b>QL </b>Tin Tức</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <h3 class="login-box-msg">Đăng nhập</h3>
+
+                <form method="post" id="frm_login">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Tên đăng nhập" name="userName" id="userName">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <span id="war_userName" class="ml-2 d-none" style="color:red;">Vui lòng nhập tên đăng nhập!</span>
+
+                    <div class="input-group mt-3">
+                        <input type="password" class="form-control" placeholder="Mật khẩu" name="password" id="password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <span id="war_password" class="ml-2 d-none" style="color:red;">Vui lòng nhập mật khẩu!</span>
+
+                    <div class="row mt-3">
+                        <div class="col-8">
+                            <p class="mb-0">
+                                <a href="Register" class="text-center">Đăng kí tài khoản mới</a>
+                            </p>
+                        </div>
+                        <!-- /.col -->
+
+                        <div class="col-4">
+                            <button id="btn_login" type="button" class="btn btn-primary btn-block" style="padding: 4px;">Đăng nhập</button>
+                        </div>
+
+                        <!-- /.col -->
+                    </div>
+                </form>
+
+                
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/Content/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Scripts/dist/js/adminlte.min.js"></script>
+</body>
+</html>
+
+
+<script>
+    $(document).ready(function () {
+        $("#btn_login").click(function () {
+            var form = $("#frm_login")[0];
+            var formData = new FormData(form);
+            var check = true;
+            if (!$('#userName').val()) {
+                $('#war_userName').removeClass("d-none");
+                check = false;
+            }
+            else $('#war_userName').addClass("d-none");
+
+            if (!$('#password').val()) {
+                $('#war_password').removeClass("d-none");
+                check = false;
+            }
+            else $('#war_password').addClass("d-none");
+
+            console.log($('#userName').val());
+            console.log($('#password').val());
+
+            if (check) {
+                $.ajax(
+                    {
+                        type: "POST",
+                        //data: {id: $("#hosothisinh_id").html()},
+                        data: formData,
+                        //data: JSON.stringify(lst),
+                        contentType: "application/json; charset=utf-8",
+                        url: window.location.origin + "/QuanLiTaiKhoan/Login",
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        success: function (response) {
+                            if (response.status == 200) {
+                                alert(response.message);
+                                window.location.href = window.location.origin;
+                            }
+                            if (response.status == 403) {
+                                $('#war_password').removeClass("d-none").text(response.message);
+                                return 0;
+                            }
+                            if (response.status == 404) {
+                                $('#war_userName').removeClass("d-none").text(response.message);
+                                return 0;
+                            }
+
+                        },
+                        error: function (response) {
+                            alert("Lỗi không xác định!");
+                        }
+                    }
+                );
+            }
+        })
+    });
+
+</script>
