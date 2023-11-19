@@ -2289,6 +2289,7 @@
     <Content Include="Views\QuanLiTaiKhoan\Register.cshtml" />
     <Content Include="Views\QuanLiTaiKhoan\Login.cshtml" />
     <Content Include="Views\QuanLiTaiKhoan\Index.cshtml" />
+    <Content Include="Views\Home\TheGioi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

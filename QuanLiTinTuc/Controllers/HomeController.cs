@@ -12,5 +12,9 @@ namespace QuanLiTinTuc.Controllers
         {
             return View();
         }
+        public ActionResult TheGioi()
+        {
+            return View();
+        }
     }
 }
