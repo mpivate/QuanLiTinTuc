@@ -183,7 +183,7 @@
                     <div class="info">
                         <a href="#" class="d-block">
                             @{
-                                var user = HttpContext.Current.Session["loginName"];
+                                var user = HttpContext.Current.Session["userName"];
                                 @user
                             }
                         </a>
@@ -209,7 +209,7 @@
     with font-awesome or any other icon font library -->
                         <li class="nav-item menu-open">
                             <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <i class="nav-icon fas fa-home"></i>
                                 <p>
                                     Trang chủ
                                 </p>
@@ -288,7 +288,7 @@
 
                         <li class="nav-item">
                             <a href="/QuanLiTaiKhoan/Login" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     Đăng Nhập
                                 </p>
@@ -297,7 +297,8 @@
 
                         <li class="nav-item">
                             <a href="/QuanLiTaiKhoan/Register" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <i class="nav-icon fas fa-arrow-alt-circle-right"></i>
+
                                 <p>
                                     Đăng kí
                                 </p>

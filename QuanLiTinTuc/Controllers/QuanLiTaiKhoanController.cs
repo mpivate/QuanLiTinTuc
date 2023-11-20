@@ -61,6 +61,7 @@ namespace QuanLiTinTuc.Controllers
         {
             string userName = Request["userName"];
             string password = Request["password"];
+            Session["userName"] = userName;
 
             List<Account> list_acc = db.Accounts.ToList();
             foreach(var ac in list_acc)
