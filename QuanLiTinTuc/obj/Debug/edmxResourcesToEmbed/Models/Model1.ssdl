@@ -10,16 +10,6 @@
     <Property Name="FullName" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="QuyenTruyCap" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <EntityType Name="BinhLuan">
-    <Key>
-      <PropertyRef Name="MaBinhLuan" />
-    </Key>
-    <Property Name="MaBinhLuan" Type="nvarchar" MaxLength="20" Nullable="false" />
-    <Property Name="MaTinTuc" Type="nvarchar" MaxLength="20" />
-    <Property Name="NoiDung" Type="nvarchar" MaxLength="1000" />
-    <Property Name="NguoiBinhLuan" Type="nvarchar" MaxLength="100" />
-    <Property Name="ThoiGianDang" Type="datetime" />
-  </EntityType>
   <EntityType Name="ChuDe">
     <Key>
       <PropertyRef Name="MaChuDe" />
@@ -43,9 +33,11 @@
     <Key>
       <PropertyRef Name="MaTinTuc" />
     </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MaTinTuc" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="TieuDe" Type="nvarchar" MaxLength="255" />
-    <Property Name="NoiDung" Type="nvarchar" MaxLength="1000" />
+    <Property Name="DoanDau" Type="nvarchar(max)" />
+    <Property Name="NoiDung" Type="nvarchar(max)" />
     <Property Name="NgayDang" Type="datetime" />
     <Property Name="TacGia" Type="nvarchar" MaxLength="100" />
     <Property Name="AnhDaiDien" Type="nvarchar" MaxLength="255" />
@@ -53,43 +45,10 @@
     <Property Name="HinhAnh" Type="nvarchar" MaxLength="255" />
     <Property Name="BinhLuan" Type="int" />
   </EntityType>
-  <Association Name="FK__BinhLuan__MaTinT__3E52440B">
-    <End Role="TinTuc" Type="Self.TinTuc" Multiplicity="0..1" />
-    <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TinTuc">
-        <PropertyRef Name="MaTinTuc" />
-      </Principal>
-      <Dependent Role="BinhLuan">
-        <PropertyRef Name="MaTinTuc" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__TinTuc__MaChuDe__3B75D760">
-    <End Role="ChuDe" Type="Self.ChuDe" Multiplicity="0..1" />
-    <End Role="TinTuc" Type="Self.TinTuc" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ChuDe">
-        <PropertyRef Name="MaChuDe" />
-      </Principal>
-      <Dependent Role="TinTuc">
-        <PropertyRef Name="MaChuDe" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="QLTinTucModelStoreContainer">
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="BinhLuan" EntityType="Self.BinhLuan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ChuDe" EntityType="Self.ChuDe" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TinTuc" EntityType="Self.TinTuc" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__BinhLuan__MaTinT__3E52440B" Association="Self.FK__BinhLuan__MaTinT__3E52440B">
-      <End Role="TinTuc" EntitySet="TinTuc" />
-      <End Role="BinhLuan" EntitySet="BinhLuan" />
-    </AssociationSet>
-    <AssociationSet Name="FK__TinTuc__MaChuDe__3B75D760" Association="Self.FK__TinTuc__MaChuDe__3B75D760">
-      <End Role="ChuDe" EntitySet="ChuDe" />
-      <End Role="TinTuc" EntitySet="TinTuc" />
-    </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLiTinTuc.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,13 +9,21 @@ namespace QuanLiTinTuc.Controllers
 {
     public class HomeController : Controller
     {
+        QLTinTuc db = new QLTinTuc();
         public ActionResult Index()
         {
             return View();
         }
         public ActionResult TheGioi()
         {
-            return View();
+            List<TinTuc> DanhSachTinTuc = db.TinTucs.ToList();
+            return View(DanhSachTinTuc);
         }
+        public ActionResult TheGioiTest()
+        {
+            List<TinTuc> DanhSachTinTuc = db.TinTucs.ToList();
+            return View(DanhSachTinTuc);
+        }
+
     }
 }

@@ -137,9 +137,6 @@
     <Compile Include="Models\Account.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BinhLuan.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ChuDe.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -2290,6 +2287,7 @@
     <Content Include="Views\QuanLiTaiKhoan\Login.cshtml" />
     <Content Include="Views\QuanLiTaiKhoan\Index.cshtml" />
     <Content Include="Views\Home\TheGioi.cshtml" />
+    <Content Include="Views\Home\TheGioiTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

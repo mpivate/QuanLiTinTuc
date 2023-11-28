@@ -14,14 +14,10 @@ namespace QuanLiTinTuc.Models
     
     public partial class TinTuc
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TinTuc()
-        {
-            this.BinhLuans = new HashSet<BinhLuan>();
-        }
-    
+        public int Id { get; set; }
         public string MaTinTuc { get; set; }
         public string TieuDe { get; set; }
+        public string DoanDau { get; set; }
         public string NoiDung { get; set; }
         public Nullable<System.DateTime> NgayDang { get; set; }
         public string TacGia { get; set; }
@@ -29,9 +25,5 @@ namespace QuanLiTinTuc.Models
         public string MaChuDe { get; set; }
         public string HinhAnh { get; set; }
         public Nullable<int> BinhLuan { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BinhLuan> BinhLuans { get; set; }
-        public virtual ChuDe ChuDe { get; set; }
     }
 }

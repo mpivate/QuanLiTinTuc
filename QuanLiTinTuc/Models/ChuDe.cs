@@ -14,18 +14,9 @@ namespace QuanLiTinTuc.Models
     
     public partial class ChuDe
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ChuDe()
-        {
-            this.TinTucs = new HashSet<TinTuc>();
-        }
-    
         public string MaChuDe { get; set; }
         public string TenChuDe { get; set; }
         public string MoTa { get; set; }
         public Nullable<int> SoLuongBaiViet { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TinTuc> TinTucs { get; set; }
     }
 }

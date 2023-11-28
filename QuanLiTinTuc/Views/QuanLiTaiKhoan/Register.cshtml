@@ -125,6 +125,11 @@
             }
             else $('#war_retypePassword').addClass("d-none");
 
+            if ($('#password').val() != $('#retypePassword').val()) {
+                $('#war_retypePassword').removeClass("d-none");
+                !$('#retypePassword').text('Mật khẩu đã nhập không khớp!');
+                return 0;
+            }
             
             //Login Handling
             if (check) { 
@@ -146,11 +151,6 @@
                                 $('#war_userName').text(response.message);
                             }
                             else {
-                                if ($('#password').val() != $('#retypePassword').val()) {
-                                    $('#war_retypePassword').removeClass("d-none");
-                                    !$('#retypePassword').text('Mật khẩu đã nhập không khớp!');
-                                    return 0;
-                                }
                                 alert('Đăng kí thành công và chuyển sang trang đăng nhập!');
                                 window.location.href = window.location.origin + "/QuanLiTaiKhoan/Login";
                             }

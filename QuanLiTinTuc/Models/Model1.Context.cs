@@ -26,7 +26,6 @@ namespace QuanLiTinTuc.Models
         }
     
         public virtual DbSet<Account> Accounts { get; set; }
-        public virtual DbSet<BinhLuan> BinhLuans { get; set; }
         public virtual DbSet<ChuDe> ChuDes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TinTuc> TinTucs { get; set; }

@@ -1,424 +1,73 @@
-﻿
+﻿@model IEnumerable<QuanLiTinTuc.Models.TinTuc>
 @{
     ViewBag.Title = "TheGioi";
 }
 <style>
     body {
-      overflow: auto;
+        overflow: auto;
     }
-    .title-right {
-        font-family: "Merriweather",serif;        
-        margin-bottom: 4px;
-        width: auto;
-        float: left;
+
+    .item-news {
+        width: 800px;
+        display: flex;
+        border-left: 1px solid #e5e5e5;
+        padding: 40px 0 0 30px;
+        position: relative;
     }
-    .title-right>h3 {
+
+    .description {
+        font-family: Arial;
+        margin-top: 10px;
+        color: #4F4F4F;
+        font-size: 15px;
+    }
+
+    .red_dot {
+        content: "";
+        width: 9px;
+        height: 9px;
+        background: #df477b;
+        border-radius: 50%;
+        position: absolute;
+        top: 52px;
+        left: -5px;
+        z-index: 1;
+    }
+
+    .title-news {
+        margin-bottom: 0;
         font-size: 22px;
+        font-family: 'Merriweather',serif;
         line-height: 32px;
         font-weight: 700;
         color: #222222;
-        padding: 18px 20px 0px;
-        height: 116px;
     }
-    .description {
-        font-family: Arial;
-        height: 74.8px;
-        margin-top: 10px;
-        color: #4F4F4F;
-        padding: 0px 20px;
-        font-size: 14px
-    }
-    .sub-news-top {
-        display: flex;
-        flex-wrap: wrap;
-        width: 780px;
-        height: 176.8px;
-        margin-top: 20px;
-        padding-top: 20px;
-        border-top: 1px solid #e5e5e5;
-    }
-    ul li {
-        list-style-type: none;
-        padding: 0;
-    }
-    ul {
-        padding: 0;
-    }
-    .title_news {
-        color: #222222;
-        line-height: 24px;
-        font-size: 18px;
-        font-weight: bold;
-        font-family: "Merriweather",serif;
-    }
-    .item-news {
-        display: flex;
-        margin-top: 14px;
-        height: 80px;
-        border-bottom: 1px solid #ccc;
-    }
-    .item-news > h4 {
-        width: 180px;
-        font-family: "Merriweather",serif;
-        font-size: 18px;
-        margin-right: 8px;
-    }
-    .list-item-news {
-        padding: 15px 5px 15px 15px;
-        border: 1px solid #E5E5E5;
-        width: 320px;
-        height: 550.6px;
-        overflow: auto;
-        margin-left: 30px;
-    }
-    .list-item-news::-webkit-scrollbar {
-        width: 4px;
-    }
-    .list-item-news::-webkit-scrollbar-thumb {
-        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-        border-radius: 44px;
-    }
-    .list-item-news::-webkit-scrollbar-track {
-        border-radius: 44px;
-        background-color: white;
-        margin-block: 20px;
-    }
-    .container-news {
-        margin-top: 20px;
-        padding-top: 20px;
-        border-top: 1px solid #ccc;
-        margin-bottom: 20px;
+
+    .thumb-art {
+        margin-left: 40px;
+        width: 220px;
+        height: 132px;
+        padding-top: 7px;
     }
 </style>
 
-<div class="card-body row center justify-content-center">
-    <div class="row container-news" style="width: 1130px; height: 550.6px;">
-        @*Phần tin bên trái*@
-        <div class="" style="width: 780px; height: 550.6px;">
-            @*Phần tin chính*@
-            <div style="width: 780px; height:300px; background-color: #f7f7f7;">
-                <div class="thumb-art" style="display: flex">
-                    <img style="width: 500px; height: 100%;" src="https://i1-vnexpress.vnecdn.net/2023/11/17/47OZBB6DJZPCBBXDPLRZ52XHGM-jpe-6123-7893-1700196087.jpg?w=1020&h=0&q=100&dpr=1&fit=crop&s=4WO4_DUfivwe48t9j9pOvQ" />
-                    <div class="title-right">
-                        <h3>Thay đổi thái độ của Trung Quốc sau cuộc gặp thượng đỉnh với Mỹ</h3>
-                        <p class="description">Tổng thống Putin bất ngờ tuyên bố cộng đồng LGBTQ là một phần của xã hội hiện đại, dường như thể hiện thái độ cởi mở hơn với nhóm này.</p>
-                    </div>
-                </div>
+<div class="card-body row center justify-content-center" style="background-color: white;">
+    @foreach (var item in Model)
+    {
+        <div class="item-news">
+            <span class="red_dot"></span>
+            <div style=" max-width: 500px;">
+                <h3 class="title-news" style="">
+                    @item.TieuDe
+                </h3>
+                <p class="description">
+                    @item.DoanDau
+                </p>
             </div>
-            @*Phần dưới tin chính*@
-            <ul class="sub-news-top">
-                <li class="col-4">
-                    <h3 class="title_news">
-                        'Mắt thần' có thể giúp Nga bảo vệ S-400 ở Ukraine
-                    </h3>
-                    <p class="description" style="padding: 0;">
-                        Tình báo Anh nói Nga có thể đang triển khai máy bay cảnh báo sớm A-50U tại Ukraine, nhằm bảo vệ tên lửa S-400 trước các mối đe dọa.
-                    </p>
-                </li>
-                <li class="col-4">
-                    <h3 class="title_news">
-                        Nga oanh tạc loạt cứ điểm Ukraine dọc sông Dnieper
-                    </h3>
-                    <p class="description" style="padding: 0;">
-                        Bộ Quốc phòng Nga tuyên bố tập kích ba cứ điểm Ukraine dọc sông Dnieper, khi giao tranh tại Kherson đang ngày càng gia tăng.
-                    </p>
-                </li>
-                <li class="col-4">
-                    <h3 class="title_news">
-                        Bệnh nhi Gaza được đưa đến UAE
-                    </h3>
-                    <p class="description" style="padding: 0;">
-                        UAE triển khai sáng kiến đưa bệnh nhi cần điều trị khẩn cấp và người thân từ Dải Gaza đến nước này.
-                    </p>
-                </li>
-            </ul>
-            <div class="scrollbar" id="style-1">
-                <div class="force-overflow"></div>
+            <div class="thumb-art">
+                <img src="https://i1-vnexpress.vnecdn.net/2023/11/27/DSC01623JPG-1701061322-1505-1701062196.jpg?w=220&h=132&q=100&dpr=1&fit=crop&s=1Nu41G9KjFZ5QHuoVc9GQQ" />
             </div>
         </div>
+    }
 
-        @* Phần tin bên phải scroll *@
-        <ul class="list-item-news" style="">
-            <li class="item-news">
-                <h4>
-                    Lừa bán xe Mercedes G63 của người khác ở showroom
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-vnexpress.vnecdn.net/2023/11/18/DSC7070-1700308707.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=OXeJ8AaCEyHBbG8f5aV6CA" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Bị buộc sơn lại tường trước chợ Bến Thành sau khi vẽ bậy
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-vnexpress.vnecdn.net/2023/11/20/45405a942736f168a827-170045790-3553-6522-1700457938.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=vSyHGdhnqDYjHjXiOPCoPA" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Đà Lạt mỹ miều nhưng đã bị nén chặt
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-vnexpress.vnecdn.net/2023/11/20/dji-0622-1700457878-5528-1700458496.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=0x85cvLLU59UhQ9nyRnVLA" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Nghìn tỷ, triệu tỷ trong tiếng Anh nói thế nào
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-vnexpress.vnecdn.net/2023/11/20/quang1-1700460101-1700460121-1427-1700460125.png?w=300&h=180&q=100&dpr=1&fit=crop&s=ouq4w15sbQDmdzGOdct2EQ" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Khó mở lòng với người đàn ông thương tôi thật lòng
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-vnexpress.vnecdn.net/2023/11/20/1011202101081606371801-1700451-5920-7425-1700452366.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=iIw3CCUg6eVXcm5IMWmWwA" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Con bạn có phát triển bình thường?
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-suckhoe.vnecdn.net/2023/11/20/a-nh-chu-p-ma-n-hi-nh-2023-11-2740-7807-1700446010.png?w=300&h=180&q=100&dpr=1&fit=crop&s=Lt0vV-9ArU66XafPlrNZeg" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Đề nghị quy định dạy thêm là ngành kinh doanh có điều kiện
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-vnexpress.vnecdn.net/2023/11/20/201120230827-huy-1700453424-17-4730-1193-1700455237.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=ToBl-zWhtSazfy1imMWg0g" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Dàn sao dự đám cưới Phương Lan 'Nhà bà Nữ'
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-giaitri.vnecdn.net/2023/11/20/TrnThnh-1700479990-3514-1700480455.png?w=300&h=180&q=100&dpr=1&fit=crop&s=ov5T4X0Mb5_Es636DiQUJw" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    'Nên giảm thuế VAT đến hết năm 2024'
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-kinhdoanh.vnecdn.net/2023/11/20/NguyenQuangHuan-1700477597-7026-1700478323.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=nOh-p2VlzI4ecJ08Go_WiQ" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Những lần tàu sao Hỏa của SpaceX nổ tung
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-vnexpress.vnecdn.net/2023/11/20/Starshipno-1700469867-8762-1700471239.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=H00n8AFqX4jkTyGpaz22mA" />
-            </li>
-        </ul>
-    </div>
-
-    <div class="row container-news" style="width: 1130px; height: 550.6px;">
-        @*Phần tin bên trái*@
-        <div class="" style="width: 780px; height: 550.6px;">
-            @*Phần tin chính*@
-            <div style="width: 780px; height:300px; background-color: #f7f7f7;">
-                <div class="thumb-art" style="display: flex">
-                    <img style="width: 500px; height: 100%;" src="https://i1-vnexpress.vnecdn.net/2023/11/17/47OZBB6DJZPCBBXDPLRZ52XHGM-jpe-6123-7893-1700196087.jpg?w=1020&h=0&q=100&dpr=1&fit=crop&s=4WO4_DUfivwe48t9j9pOvQ" />
-                    <div class="title-right">
-                        <h3>Thay đổi thái độ của Trung Quốc sau cuộc gặp thượng đỉnh với Mỹ</h3>
-                        <p class="description">Tổng thống Putin bất ngờ tuyên bố cộng đồng LGBTQ là một phần của xã hội hiện đại, dường như thể hiện thái độ cởi mở hơn với nhóm này.</p>
-                    </div>
-                </div>
-            </div>
-            @*Phần dưới tin chính*@
-            <ul class="sub-news-top">
-                <li class="col-4">
-                    <h3 class="title_news">
-                        'Mắt thần' có thể giúp Nga bảo vệ S-400 ở Ukraine
-                    </h3>
-                    <p class="description" style="padding: 0;">
-                        Tình báo Anh nói Nga có thể đang triển khai máy bay cảnh báo sớm A-50U tại Ukraine, nhằm bảo vệ tên lửa S-400 trước các mối đe dọa.
-                    </p>
-                </li>
-                <li class="col-4">
-                    <h3 class="title_news">
-                        Nga oanh tạc loạt cứ điểm Ukraine dọc sông Dnieper
-                    </h3>
-                    <p class="description" style="padding: 0;">
-                        Bộ Quốc phòng Nga tuyên bố tập kích ba cứ điểm Ukraine dọc sông Dnieper, khi giao tranh tại Kherson đang ngày càng gia tăng.
-                    </p>
-                </li>
-                <li class="col-4">
-                    <h3 class="title_news">
-                        Bệnh nhi Gaza được đưa đến UAE
-                    </h3>
-                    <p class="description" style="padding: 0;">
-                        UAE triển khai sáng kiến đưa bệnh nhi cần điều trị khẩn cấp và người thân từ Dải Gaza đến nước này.
-                    </p>
-                </li>
-            </ul>
-            <div class="scrollbar" id="style-1">
-                <div class="force-overflow"></div>
-            </div>
-        </div>
-
-        @* Phần tin bên phải scroll *@
-        <ul class="list-item-news" style="">
-            <li class="item-news">
-                <h4>
-                    Lừa bán xe Mercedes G63 của người khác ở showroom
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-vnexpress.vnecdn.net/2023/11/18/DSC7070-1700308707.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=OXeJ8AaCEyHBbG8f5aV6CA" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Bị buộc sơn lại tường trước chợ Bến Thành sau khi vẽ bậy
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-vnexpress.vnecdn.net/2023/11/20/45405a942736f168a827-170045790-3553-6522-1700457938.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=vSyHGdhnqDYjHjXiOPCoPA" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Đà Lạt mỹ miều nhưng đã bị nén chặt
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-vnexpress.vnecdn.net/2023/11/20/dji-0622-1700457878-5528-1700458496.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=0x85cvLLU59UhQ9nyRnVLA" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Nghìn tỷ, triệu tỷ trong tiếng Anh nói thế nào
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-vnexpress.vnecdn.net/2023/11/20/quang1-1700460101-1700460121-1427-1700460125.png?w=300&h=180&q=100&dpr=1&fit=crop&s=ouq4w15sbQDmdzGOdct2EQ" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Khó mở lòng với người đàn ông thương tôi thật lòng
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-vnexpress.vnecdn.net/2023/11/20/1011202101081606371801-1700451-5920-7425-1700452366.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=iIw3CCUg6eVXcm5IMWmWwA" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Con bạn có phát triển bình thường?
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-suckhoe.vnecdn.net/2023/11/20/a-nh-chu-p-ma-n-hi-nh-2023-11-2740-7807-1700446010.png?w=300&h=180&q=100&dpr=1&fit=crop&s=Lt0vV-9ArU66XafPlrNZeg" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Đề nghị quy định dạy thêm là ngành kinh doanh có điều kiện
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-vnexpress.vnecdn.net/2023/11/20/201120230827-huy-1700453424-17-4730-1193-1700455237.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=ToBl-zWhtSazfy1imMWg0g" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Dàn sao dự đám cưới Phương Lan 'Nhà bà Nữ'
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-giaitri.vnecdn.net/2023/11/20/TrnThnh-1700479990-3514-1700480455.png?w=300&h=180&q=100&dpr=1&fit=crop&s=ov5T4X0Mb5_Es636DiQUJw" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    'Nên giảm thuế VAT đến hết năm 2024'
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-kinhdoanh.vnecdn.net/2023/11/20/NguyenQuangHuan-1700477597-7026-1700478323.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=nOh-p2VlzI4ecJ08Go_WiQ" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Những lần tàu sao Hỏa của SpaceX nổ tung
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-vnexpress.vnecdn.net/2023/11/20/Starshipno-1700469867-8762-1700471239.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=H00n8AFqX4jkTyGpaz22mA" />
-            </li>
-        </ul>
-    </div>
-
-    <div class="row container-news" style="width: 1130px; height: 550.6px;">
-        @*Phần tin bên trái*@
-        <div class="" style="width: 780px; height: 550.6px;">
-            @*Phần tin chính*@
-            <div style="width: 780px; height:300px; background-color: #f7f7f7;">
-                <div class="thumb-art" style="display: flex">
-                    <img style="width: 500px; height: 100%;" src="https://i1-vnexpress.vnecdn.net/2023/11/17/47OZBB6DJZPCBBXDPLRZ52XHGM-jpe-6123-7893-1700196087.jpg?w=1020&h=0&q=100&dpr=1&fit=crop&s=4WO4_DUfivwe48t9j9pOvQ" />
-                    <div class="title-right">
-                        <h3>Thay đổi thái độ của Trung Quốc sau cuộc gặp thượng đỉnh với Mỹ</h3>
-                        <p class="description">Tổng thống Putin bất ngờ tuyên bố cộng đồng LGBTQ là một phần của xã hội hiện đại, dường như thể hiện thái độ cởi mở hơn với nhóm này.</p>
-                    </div>
-                </div>
-            </div>
-            @*Phần dưới tin chính*@
-            <ul class="sub-news-top">
-                <li class="col-4">
-                    <h3 class="title_news">
-                        'Mắt thần' có thể giúp Nga bảo vệ S-400 ở Ukraine
-                    </h3>
-                    <p class="description" style="padding: 0;">
-                        Tình báo Anh nói Nga có thể đang triển khai máy bay cảnh báo sớm A-50U tại Ukraine, nhằm bảo vệ tên lửa S-400 trước các mối đe dọa.
-                    </p>
-                </li>
-                <li class="col-4">
-                    <h3 class="title_news">
-                        Nga oanh tạc loạt cứ điểm Ukraine dọc sông Dnieper
-                    </h3>
-                    <p class="description" style="padding: 0;">
-                        Bộ Quốc phòng Nga tuyên bố tập kích ba cứ điểm Ukraine dọc sông Dnieper, khi giao tranh tại Kherson đang ngày càng gia tăng.
-                    </p>
-                </li>
-                <li class="col-4">
-                    <h3 class="title_news">
-                        Bệnh nhi Gaza được đưa đến UAE
-                    </h3>
-                    <p class="description" style="padding: 0;">
-                        UAE triển khai sáng kiến đưa bệnh nhi cần điều trị khẩn cấp và người thân từ Dải Gaza đến nước này.
-                    </p>
-                </li>
-            </ul>
-            <div class="scrollbar" id="style-1">
-                <div class="force-overflow"></div>
-            </div>
-        </div>
-
-        @* Phần tin bên phải scroll *@
-        <ul class="list-item-news" style="">
-            <li class="item-news">
-                <h4>
-                    Lừa bán xe Mercedes G63 của người khác ở showroom
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-vnexpress.vnecdn.net/2023/11/18/DSC7070-1700308707.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=OXeJ8AaCEyHBbG8f5aV6CA" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Bị buộc sơn lại tường trước chợ Bến Thành sau khi vẽ bậy
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-vnexpress.vnecdn.net/2023/11/20/45405a942736f168a827-170045790-3553-6522-1700457938.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=vSyHGdhnqDYjHjXiOPCoPA" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Đà Lạt mỹ miều nhưng đã bị nén chặt
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-vnexpress.vnecdn.net/2023/11/20/dji-0622-1700457878-5528-1700458496.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=0x85cvLLU59UhQ9nyRnVLA" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Nghìn tỷ, triệu tỷ trong tiếng Anh nói thế nào
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-vnexpress.vnecdn.net/2023/11/20/quang1-1700460101-1700460121-1427-1700460125.png?w=300&h=180&q=100&dpr=1&fit=crop&s=ouq4w15sbQDmdzGOdct2EQ" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Khó mở lòng với người đàn ông thương tôi thật lòng
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-vnexpress.vnecdn.net/2023/11/20/1011202101081606371801-1700451-5920-7425-1700452366.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=iIw3CCUg6eVXcm5IMWmWwA" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Con bạn có phát triển bình thường?
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-suckhoe.vnecdn.net/2023/11/20/a-nh-chu-p-ma-n-hi-nh-2023-11-2740-7807-1700446010.png?w=300&h=180&q=100&dpr=1&fit=crop&s=Lt0vV-9ArU66XafPlrNZeg" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Đề nghị quy định dạy thêm là ngành kinh doanh có điều kiện
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-vnexpress.vnecdn.net/2023/11/20/201120230827-huy-1700453424-17-4730-1193-1700455237.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=ToBl-zWhtSazfy1imMWg0g" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Dàn sao dự đám cưới Phương Lan 'Nhà bà Nữ'
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-giaitri.vnecdn.net/2023/11/20/TrnThnh-1700479990-3514-1700480455.png?w=300&h=180&q=100&dpr=1&fit=crop&s=ov5T4X0Mb5_Es636DiQUJw" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    'Nên giảm thuế VAT đến hết năm 2024'
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-kinhdoanh.vnecdn.net/2023/11/20/NguyenQuangHuan-1700477597-7026-1700478323.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=nOh-p2VlzI4ecJ08Go_WiQ" />
-            </li>
-            <li class="item-news">
-                <h4>
-                    Những lần tàu sao Hỏa của SpaceX nổ tung
-                </h4>
-                <img style="width:100px; height:60px;" src="https://i1-vnexpress.vnecdn.net/2023/11/20/Starshipno-1700469867-8762-1700471239.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=H00n8AFqX4jkTyGpaz22mA" />
-            </li>
-        </ul>
-    </div>
 </div>

@@ -6,13 +6,10 @@
     <edmx:Diagrams>
       <Diagram DiagramId="eaf417d0eabd4e53b5bfec0dcf005906" Name="Diagram1">
         <EntityTypeShape EntityType="QLTinTucModel.Account" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLTinTucModel.BinhLuan" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QLTinTucModel.ChuDe" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QLTinTucModel.sysdiagram" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLTinTucModel.TinTuc" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="QLTinTucModel.FK__BinhLuan__MaTinT__3E52440B" ManuallyRouted="false" />
-        <AssociationConnector Association="QLTinTucModel.FK__TinTuc__MaChuDe__3B75D760" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="QLTinTucModel.TinTuc" Width="1.5" PointX="3.125" PointY="1.375" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

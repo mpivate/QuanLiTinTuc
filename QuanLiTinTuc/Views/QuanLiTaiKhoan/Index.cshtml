@@ -26,21 +26,24 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model) {
+@foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.UserName)
+            @item.UserName
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PassWord)
+            @item.PassWord
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FullName)
+            @item.FullName
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.QuyenTruyCap)
+            @item.QuyenTruyCap
         </td>
         <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
         </td>
     </tr>
 }

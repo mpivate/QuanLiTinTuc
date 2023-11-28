@@ -10,17 +10,6 @@
     <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="QuyenTruyCap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="BinhLuan">
-    <Key>
-      <PropertyRef Name="MaBinhLuan" />
-    </Key>
-    <Property Name="MaBinhLuan" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="MaTinTuc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="NoiDung" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-    <Property Name="NguoiBinhLuan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="ThoiGianDang" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="TinTuc" Relationship="Self.FK__BinhLuan__MaTinT__3E52440B" FromRole="BinhLuan" ToRole="TinTuc" />
-  </EntityType>
   <EntityType Name="ChuDe">
     <Key>
       <PropertyRef Name="MaChuDe" />
@@ -29,7 +18,6 @@
     <Property Name="TenChuDe" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="MoTa" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="SoLuongBaiViet" Type="Int32" />
-    <NavigationProperty Name="TinTucs" Relationship="Self.FK__TinTuc__MaChuDe__3B75D760" FromRole="ChuDe" ToRole="TinTuc" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -41,59 +29,26 @@
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
+  <EntityContainer Name="QLTinTuc" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="ChuDes" EntityType="Self.ChuDe" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TinTucs" EntityType="QLTinTucModel.TinTuc" />
+  </EntityContainer>
   <EntityType Name="TinTuc">
     <Key>
       <PropertyRef Name="MaTinTuc" />
     </Key>
-    <Property Name="MaTinTuc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaTinTuc" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="TieuDe" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="NoiDung" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="DoanDau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="NgayDang" Type="DateTime" Precision="3" />
     <Property Name="TacGia" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="AnhDaiDien" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="MaChuDe" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="HinhAnh" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="BinhLuan" Type="Int32" />
-    <NavigationProperty Name="BinhLuans" Relationship="Self.FK__BinhLuan__MaTinT__3E52440B" FromRole="TinTuc" ToRole="BinhLuan" />
-    <NavigationProperty Name="ChuDe" Relationship="Self.FK__TinTuc__MaChuDe__3B75D760" FromRole="TinTuc" ToRole="ChuDe" />
   </EntityType>
-  <Association Name="FK__BinhLuan__MaTinT__3E52440B">
-    <End Role="TinTuc" Type="Self.TinTuc" Multiplicity="0..1" />
-    <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TinTuc">
-        <PropertyRef Name="MaTinTuc" />
-      </Principal>
-      <Dependent Role="BinhLuan">
-        <PropertyRef Name="MaTinTuc" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__TinTuc__MaChuDe__3B75D760">
-    <End Role="ChuDe" Type="Self.ChuDe" Multiplicity="0..1" />
-    <End Role="TinTuc" Type="Self.TinTuc" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ChuDe">
-        <PropertyRef Name="MaChuDe" />
-      </Principal>
-      <Dependent Role="TinTuc">
-        <PropertyRef Name="MaChuDe" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityContainer Name="QLTinTuc" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Accounts" EntityType="Self.Account" />
-    <EntitySet Name="BinhLuans" EntityType="Self.BinhLuan" />
-    <EntitySet Name="ChuDes" EntityType="Self.ChuDe" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-    <EntitySet Name="TinTucs" EntityType="Self.TinTuc" />
-    <AssociationSet Name="FK__BinhLuan__MaTinT__3E52440B" Association="Self.FK__BinhLuan__MaTinT__3E52440B">
-      <End Role="TinTuc" EntitySet="TinTucs" />
-      <End Role="BinhLuan" EntitySet="BinhLuans" />
-    </AssociationSet>
-    <AssociationSet Name="FK__TinTuc__MaChuDe__3B75D760" Association="Self.FK__TinTuc__MaChuDe__3B75D760">
-      <End Role="ChuDe" EntitySet="ChuDes" />
-      <End Role="TinTuc" EntitySet="TinTucs" />
-    </AssociationSet>
-  </EntityContainer>
 </Schema>

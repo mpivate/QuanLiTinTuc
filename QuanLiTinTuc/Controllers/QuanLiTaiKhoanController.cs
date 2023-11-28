@@ -56,6 +56,7 @@ namespace QuanLiTinTuc.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Login(Account acc)
         {
