@@ -45,28 +45,38 @@
 
     .thumb-art {
         margin-left: 40px;
+        padding-top: 7px;
+    }
+    .thumb-art>img{
         width: 220px;
         height: 132px;
-        padding-top: 7px;
     }
 </style>
 
 <div class="card-body row center justify-content-center" style="background-color: white;">
     @foreach (var item in Model)
     {
+        
         <div class="item-news">
             <span class="red_dot"></span>
             <div style=" max-width: 500px;">
-                <h3 class="title-news" style="">
-                    @item.TieuDe
-                </h3>
-                <p class="description">
-                    @item.DoanDau
-                </p>
+                <a href="/Home/TheGioiView?a=@item.Id">
+                    <h3 class="title-news" style="">
+                        @item.TieuDe
+                    </h3>
+                </a>
+                <a href="/Home/TheGioiView?a=@item.Id">
+                    <p class="description">
+                        @item.TomTat
+                    </p>
+                </a>
             </div>
-            <div class="thumb-art">
-                <img src="https://i1-vnexpress.vnecdn.net/2023/11/27/DSC01623JPG-1701061322-1505-1701062196.jpg?w=220&h=132&q=100&dpr=1&fit=crop&s=1Nu41G9KjFZ5QHuoVc9GQQ" />
-            </div>
+            <a href="/Home/TheGioiView?a=@item.Id">
+                <div class="thumb-art">
+                    <img src="@item.Anh" />
+                </div>
+            </a>
+
         </div>
     }
 

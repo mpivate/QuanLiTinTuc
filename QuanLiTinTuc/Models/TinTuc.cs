@@ -15,15 +15,12 @@ namespace QuanLiTinTuc.Models
     public partial class TinTuc
     {
         public int Id { get; set; }
-        public string MaTinTuc { get; set; }
         public string TieuDe { get; set; }
-        public string DoanDau { get; set; }
+        public string TomTat { get; set; }
+        public string Anh { get; set; }
         public string NoiDung { get; set; }
         public Nullable<System.DateTime> NgayDang { get; set; }
         public string TacGia { get; set; }
-        public string AnhDaiDien { get; set; }
-        public string MaChuDe { get; set; }
-        public string HinhAnh { get; set; }
-        public Nullable<int> BinhLuan { get; set; }
+        public string ChuDe { get; set; }
     }
 }

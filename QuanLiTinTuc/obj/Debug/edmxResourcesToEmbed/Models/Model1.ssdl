@@ -31,19 +31,16 @@
   </EntityType>
   <EntityType Name="TinTuc">
     <Key>
-      <PropertyRef Name="MaTinTuc" />
+      <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="MaTinTuc" Type="nvarchar" MaxLength="20" Nullable="false" />
-    <Property Name="TieuDe" Type="nvarchar" MaxLength="255" />
-    <Property Name="DoanDau" Type="nvarchar(max)" />
-    <Property Name="NoiDung" Type="nvarchar(max)" />
+    <Property Name="TieuDe" Type="ntext" />
+    <Property Name="TomTat" Type="ntext" />
+    <Property Name="Anh" Type="varchar" MaxLength="255" />
+    <Property Name="NoiDung" Type="ntext" />
     <Property Name="NgayDang" Type="datetime" />
     <Property Name="TacGia" Type="nvarchar" MaxLength="100" />
-    <Property Name="AnhDaiDien" Type="nvarchar" MaxLength="255" />
-    <Property Name="MaChuDe" Type="nvarchar" MaxLength="20" />
-    <Property Name="HinhAnh" Type="nvarchar" MaxLength="255" />
-    <Property Name="BinhLuan" Type="int" />
+    <Property Name="ChuDe" Type="nvarchar" MaxLength="20" />
   </EntityType>
   <EntityContainer Name="QLTinTucModelStoreContainer">
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />

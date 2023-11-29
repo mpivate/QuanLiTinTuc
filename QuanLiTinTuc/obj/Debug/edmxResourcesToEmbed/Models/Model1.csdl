@@ -37,18 +37,15 @@
   </EntityContainer>
   <EntityType Name="TinTuc">
     <Key>
-      <PropertyRef Name="MaTinTuc" />
+      <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="MaTinTuc" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="TieuDe" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="DoanDau" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TieuDe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TomTat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Anh" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="NgayDang" Type="DateTime" Precision="3" />
     <Property Name="TacGia" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="AnhDaiDien" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="MaChuDe" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="HinhAnh" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="BinhLuan" Type="Int32" />
+    <Property Name="ChuDe" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>
