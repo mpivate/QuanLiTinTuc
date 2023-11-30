@@ -2740,9 +2740,10 @@
     <Content Include="Views\QuanLiTaiKhoan\Login.cshtml" />
     <Content Include="Views\QuanLiTaiKhoan\Index.cshtml" />
     <Content Include="Views\Home\TheGioi.cshtml" />
-    <Content Include="Views\Home\TheGioiTest.cshtml" />
     <Content Include="Views\Home\TheGioiView.cshtml" />
     <Content Include="Views\QuanLiTinTuc\ThemTinTuc.cshtml" />
+    <Content Include="Views\QuanLiTinTuc\SuaXoaTinTuc.cshtml" />
+    <Content Include="Views\QuanLiTinTuc\SuaTinTucView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

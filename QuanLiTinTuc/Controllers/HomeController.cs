@@ -19,9 +19,9 @@ namespace QuanLiTinTuc.Controllers
             List<TinTuc> DanhSachTinTuc = db.TinTucs.ToList();
             return View(DanhSachTinTuc);
         }
-        public ActionResult TheGioiView(int a)
+        public ActionResult TheGioiView(int Id)
         {
-            TinTuc TinThoaMan = db.TinTucs.Where(e => e.Id == a).FirstOrDefault(); 
+            TinTuc TinThoaMan = db.TinTucs.Where(e => e.Id == Id).FirstOrDefault(); 
             return View(TinThoaMan);
             
         }
