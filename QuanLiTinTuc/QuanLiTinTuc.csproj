@@ -2744,6 +2744,14 @@
     <Content Include="Views\QuanLiTinTuc\ThemTinTuc.cshtml" />
     <Content Include="Views\QuanLiTinTuc\SuaXoaTinTuc.cshtml" />
     <Content Include="Views\QuanLiTinTuc\SuaTinTucView.cshtml" />
+    <Content Include="Views\Home\KinhDoanh.cshtml" />
+    <Content Include="Views\Home\KinhDoanhView.cshtml" />
+    <Content Include="Views\Home\BatDongSan.cshtml" />
+    <Content Include="Views\Home\BatDongSanView.cshtml" />
+    <Content Include="Views\Home\KhoaHoc.cshtml" />
+    <Content Include="Views\Home\KhoaHocView.cshtml" />
+    <Content Include="Views\Home\GiaiTri.cshtml" />
+    <Content Include="Views\Home\GiaiTriView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
