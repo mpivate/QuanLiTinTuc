@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="~/Content/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="~/Content/plugins/summernote/summernote-bs4.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet'>
     <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 </head>
 <body>
@@ -39,9 +40,20 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="/Home/TheGioi" class="nav-link">Thế giới</a>
+                    <a href="/Home/TheGioi" class="nav-link" onclick="toggleActiveClass(this)">Thế giới</a>
                 </li>
-
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/Home/KinhDoanh" class="nav-link" onclick="toggleActiveClass(this)">Kinh Doanh</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/Home/BatDongSan" class="nav-link" onclick="toggleActiveClass(this)">Bất động sản</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/Home/KhoaHoc" class="nav-link" onclick="toggleActiveClass(this)">Khoa học</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/Home/GiaiTri" class="nav-link" onclick="toggleActiveClass(this)">Giải trí</a>
+                </li>
             </ul>
 
             <!-- Right navbar links -->
@@ -208,8 +220,8 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                         with font-awesome or any other icon font library -->
-                        <li class="nav-item menu-open">
-                            <a href="#" class="nav-link active">
+                        <li class="nav-item">
+                            <a href="/" class="nav-link">
                                 <i class="nav-icon fas fa-home"></i>
                                 <p>
                                     Trang chủ
@@ -241,35 +253,23 @@
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tree"></i>
+                                <i class="nav-icon fas fa-edit"></i>
                                 <p>
                                     Quản lí tin tức
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
+                                <li class="nav-item ">
                                     <a href="/QuanLiTinTuc/ThemTinTuc" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="nav-icon far fa-circle text-primary"></i>
                                         <p>Thêm tin tức</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/UI/icons.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Icons</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/UI/buttons.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Buttons</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/UI/sliders.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Sliders</p>
+                                    <a href="/QuanLiTinTuc/SuaXoaTinTuc" class="nav-link">
+                                        <i class="nav-icon far fa-circle text-warning"></i>
+                                        <p>Sửa hoặc xóa tin tức</p>
                                     </a>
                                 </li>
                             </ul>
@@ -345,6 +345,26 @@
     <script src="~/Scripts/dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="~/Scripts/dist/js/pages/dashboard.js"></script>
+    <script>
+        // Hàm kiểm tra đường dẫn và áp dụng class "active" cho thẻ tương ứng
+        function setActiveLink() {
+            var currentPath = window.location.pathname;
+            // Lấy danh sách tất cả các thẻ a trong navbar
+            var navLinks = document.querySelectorAll('.nav-link');
 
+            // Xóa class 'active' từ tất cả các thẻ a
+            navLinks.forEach(function (navLink) {
+                navLink.classList.remove('active');
+
+                // Kiểm tra nếu đường dẫn của thẻ a trùng với đường dẫn hiện tại
+                if (navLink.getAttribute('href') === currentPath) {
+                    navLink.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('load', setActiveLink);
+        window.addEventListener('popstate', setActiveLink);
+    </script>
 </body>
 </html>
+

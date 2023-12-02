@@ -1,0 +1,98 @@
+﻿@model QuanLiTinTuc.Models.TinTuc
+@{
+    ViewBag.Title = "SuaTinTucView";
+}
+
+<form id="frm_Post" method="post" style="width: 800px; margin: auto;">
+
+    <h1 style="font-size: 32px; line-height: 150%; font-family: 'Merriweather',serif; font-weight: bold; margin-top: 25px; margin-bottom: 15px; color: #9f224e; text-align: center;">
+        Sửa tin tức
+    </h1>
+    <div class="form-group">
+        <label>Chủ đề</label>
+        <div>
+            <select style=" width: 130px;" id="ChuDe" name="ChuDe">
+                <option value="TheGioi">Thế giới</option>
+                <option value="KinhDoanh">Kinh doanh</option>
+                <option value="BatDongSan">Bất động sản</option>
+                <option value="KhoaHoc">Khoa học</option>
+                <option value="GiaiTri">Giải trí</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Tiêu đề</label>
+        <div>
+            <input value="@Model.TieuDe" name="TieuDe" style=" width: -webkit-fill-available;" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Tóm tắt</label>
+        <div>
+            <input value="@Model.TomTat" name="TomTat" style=" width: -webkit-fill-available;" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>URL ảnh tiêu đề</label>
+        <div>
+            <input value="@Model.Anh" name="Anh" style=" width: -webkit-fill-available;" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Tác giả</label>
+        <div>
+            <input value="@Model.TacGia" name="TacGia" style=" width: -webkit-fill-available;" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Nội dung</label>
+        <textarea id="NoiDung" name="NoiDung">
+            @Model.NoiDung
+        </textarea>
+    </div>
+
+    <button id="btn_submit" type="button" class="btn btn-primary">Sửa tin</button>
+</form>
+
+
+
+<script>
+    CKEDITOR.replace('NoiDung');
+    // Đặt giá trị mặc định cho thẻ select
+    $("#ChuDe").val('@Model.ChuDe');
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#btn_submit').click(function () {
+            var form = $("#frm_Post")[0];
+            var formData = new FormData(form);
+            formData.append('str_NoiDung', CKEDITOR.instances.NoiDung.getData());
+            $.ajax(
+                {
+                    type: "POST",
+                    //data: {id: $("#hosothisinh_id").html()},
+                    data: formData,
+                    //data: JSON.stringify(lst),
+                    contentType: "application/json; charset=utf-8",
+                    url: window.location.origin + "/QuanLiTinTuc/SuaTinTuc?Id=" + @Model.Id,
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    success: function (response) {
+                        alert('Sửa tin mới thành công');
+                        window.location.href = window.location.origin + '/Home/TheGioi';
+                    },
+                    error: function (response) {
+                        alert('Sửa tin mới thất bại');
+                    }
+                }
+            );
+        })
+    })
+</script>

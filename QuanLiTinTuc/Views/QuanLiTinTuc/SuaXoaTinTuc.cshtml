@@ -1,0 +1,88 @@
+﻿@model IEnumerable<QuanLiTinTuc.Models.TinTuc>
+
+@{
+    ViewBag.Title = "SuaXoaTinTuc";
+}
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<h1 style="font-size: 32px; line-height: 150%; font-family: 'Merriweather',serif; font-weight: bold; margin-top: 25px; margin-bottom: 15px; color: #9f224e; text-align: center;">
+    Sửa xóa tin tức
+</h1>
+
+<table class="table">
+    <tr>
+        <th>
+            STT
+        </th>
+        <th>
+            Tiêu đề
+        </th>
+        <th>
+            Ngày đăng
+        </th>
+        <th>
+            Tác giả
+        </th>
+        <th>
+            Chủ đề
+        </th>
+        <th></th>
+    </tr>
+    @{
+        int stt = 1;
+    }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @stt
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TieuDe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayDang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TacGia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChuDe)
+            </td>
+            <td>
+                <div style="display: flex;">
+                    <a class="btn btn-primary" href="/QuanLiTinTuc/SuaTinTucView?Id=@item.Id" style="margin-right: 4px;">Sửa</a>
+                    <a class="btn btn-danger" onclick="return confirmDelete(@item.Id)">Xóa</a>
+                </div>
+            </td>
+        </tr>
+        stt++;
+    }
+
+</table>
+
+<script>
+    function confirmDelete(id) {
+        var result = window.confirm("Bạn có chắc chắn muốn xóa không?");
+        if (result) {
+            window.location.href = "/QuanLiTinTuc/XoaTinTuc?Id=" + id;
+        }
+        return false;
+    }
+</script>
