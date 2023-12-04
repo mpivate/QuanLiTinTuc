@@ -138,6 +138,7 @@
     <Compile Include="Models\Account.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\APIResult_ett.cs" />
     <Compile Include="Models\ChuDe.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

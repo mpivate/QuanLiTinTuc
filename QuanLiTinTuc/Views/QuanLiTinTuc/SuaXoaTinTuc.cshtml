@@ -9,7 +9,9 @@
         border-collapse: collapse;
         width: 100%;
     }
-
+    .card {
+        margin: 0 30px;
+    }
     th, td {
         border: 1px solid #ddd;
         padding: 8px;
@@ -24,58 +26,63 @@
 <h1 style="font-size: 32px; line-height: 150%; font-family: 'Merriweather',serif; font-weight: bold; margin-top: 25px; margin-bottom: 15px; color: #9f224e; text-align: center;">
     Sửa xóa tin tức
 </h1>
+<div class="card">
 
-<table class="table">
-    <tr>
-        <th>
-            STT
-        </th>
-        <th>
-            Tiêu đề
-        </th>
-        <th>
-            Ngày đăng
-        </th>
-        <th>
-            Tác giả
-        </th>
-        <th>
-            Chủ đề
-        </th>
-        <th></th>
-    </tr>
-    @{
-        int stt = 1;
-    }
-    @foreach (var item in Model)
-    {
+    <table>
         <tr>
-            <td>
-                @stt
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TieuDe)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgayDang)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TacGia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ChuDe)
-            </td>
-            <td>
-                <div style="display: flex;">
-                    <a class="btn btn-primary" href="/QuanLiTinTuc/SuaTinTucView?Id=@item.Id" style="margin-right: 4px;">Sửa</a>
-                    <a class="btn btn-danger" onclick="return confirmDelete(@item.Id)">Xóa</a>
-                </div>
-            </td>
+            <th>
+                STT
+            </th>
+            <th>
+                Tiêu đề
+            </th>
+            <th>
+                Ngày đăng
+            </th>
+            <th>
+                Tác giả
+            </th>
+            <th>
+                Chủ đề
+            </th>
+            <th></th>
         </tr>
-        stt++;
-    }
-
-</table>
+        @{
+            int stt = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @stt
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TieuDe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayDang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TacGia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChuDe)
+                </td>
+                <td>
+                    <div style="display: flex;">
+                        <a  class=' btn  btn-outline-warning border-0' href="/QuanLiTinTuc/SuaTinTucView?Id=@item.Id" style="margin-right: 4px;">
+                            <i class='fa fa-pen'> </i>
+                        </a>
+                        <a class="btn btn-outline-danger border-0" onclick="return confirmDelete(@item.Id)">
+                            <i class='fa fa-trash'></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            stt++;
+        }
+</table>    
+</div>
 
 <script>
     function confirmDelete(id) {
