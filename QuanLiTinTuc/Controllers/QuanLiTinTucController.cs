@@ -49,6 +49,35 @@ namespace QuanLiTinTuc.Controllers
             List<TinTuc> list_TinTuc = db.TinTucs.ToList();
             return View(list_TinTuc);
         }
+        [HttpPost]
+        public ActionResult SuaXoaTinTuc(string keyword)
+        {
+            List<TinTuc> list_TinTuc;
+
+            if (string.IsNullOrEmpty(keyword))
+            {
+                // Nếu không có từ khóa tìm kiếm, hiển thị toàn bộ danh sách
+                list_TinTuc = db.TinTucs.ToList();
+            }
+            else
+            {
+                // Nếu có từ khóa tìm kiếm, hiển thị danh sách tin tức kết quả
+                list_TinTuc = db.TinTucs.Where(t => t.TieuDe.Contains(keyword)).ToList();
+            }
+
+            return View(list_TinTuc);
+        }
+
+        public ActionResult TimKiemTinTuc(string keyword)
+        {
+            // Tìm kiếm tin tức theo Tiêu đề
+            List<TinTuc> ketQuaTimKiem = db.TinTucs.Where(t => t.TieuDe.Contains(keyword)).ToList();
+
+            // Trả về view với danh sách tin tức kết quả
+            return View("SuaXoaTinTuc", ketQuaTimKiem);
+        }
+
+
         public ActionResult SuaTinTucView(int Id)
         {
             var baiviet = db.TinTucs.Where(e => e.Id == Id).FirstOrDefault();
@@ -93,5 +122,7 @@ namespace QuanLiTinTuc.Controllers
 
             return RedirectToAction("SuaXoaTinTuc");
         }
+
+
     }
 }

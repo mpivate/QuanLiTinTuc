@@ -9,9 +9,11 @@
         border-collapse: collapse;
         width: 100%;
     }
+
     .card {
         margin: 0 30px;
     }
+
     th, td {
         border: 1px solid #ddd;
         padding: 8px;
@@ -26,8 +28,16 @@
 <h1 style="font-size: 32px; line-height: 150%; font-family: 'Merriweather',serif; font-weight: bold; margin-top: 25px; margin-bottom: 15px; color: #9f224e; text-align: center;">
     Sửa xóa tin tức
 </h1>
-<div class="card">
 
+<div class="card">
+    <div class="input-group input-group-sm ml-auto" style="width: 250px;">
+        <input type="text" name="txt_search" id="txt_search" class="form-control float-right" placeholder="Tìm kiếm theo tiêu đề">
+        <div class="input-group-append">
+            <button id="btn_search_action" type="button" class="btn btn-default" onclick="searchTinTuc()">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
     <table>
         <tr>
             <th>
@@ -70,7 +80,7 @@
                 </td>
                 <td>
                     <div style="display: flex;">
-                        <a  class=' btn  btn-outline-warning border-0' href="/QuanLiTinTuc/SuaTinTucView?Id=@item.Id" style="margin-right: 4px;">
+                        <a class=' btn  btn-outline-warning border-0' href="/QuanLiTinTuc/SuaTinTucView?Id=@item.Id" style="margin-right: 4px;">
                             <i class='fa fa-pen'> </i>
                         </a>
                         <a class="btn btn-outline-danger border-0" onclick="return confirmDelete(@item.Id)">
@@ -81,7 +91,7 @@
             </tr>
             stt++;
         }
-</table>    
+    </table>
 </div>
 
 <script>
@@ -92,4 +102,34 @@
         }
         return false;
     }
+</script>
+
+
+<script>
+    function searchTinTuc() {
+        var keyword = $("#txt_search").val();
+
+        // Lưu giá trị keyword vào sessionStorage để giữ nguyên sau khi trang tải lại
+        sessionStorage.setItem("searchKeyword", keyword);
+
+        window.location.href = "/QuanLiTinTuc/TimKiemTinTuc?keyword=" + keyword;
+    }
+
+    // Hàm này sẽ chạy khi trang được tải lại
+    $(document).ready(function () {
+        // Lấy giá trị keyword từ sessionStorage và đặt vào ô tìm kiếm
+        var storedKeyword = sessionStorage.getItem("searchKeyword");
+        if (storedKeyword) {
+            $("#txt_search").val(storedKeyword);
+        }
+
+        // Nghe sự kiện keypress trên ô tìm kiếm
+        $("#txt_search").keypress(function (event) {
+            // Kiểm tra nếu phím Enter được nhấn (keyCode 13)
+            if (event.which === 13) {
+                // Thực hiện tìm kiếm
+                searchTinTuc();
+            }
+        });
+    });
 </script>
