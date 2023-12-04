@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\QuanLiTinTuc",
-    "\\QuanLiTinTuc\\Views",
-    "\\QuanLiTinTuc\\Views\\Home",
-    "\\QuanLiTinTuc\\Views\\Shared"
+    ""
   ],
-  "SelectedNode": "\\QuanLiTinTuc\\Views\\Shared\\_Layout.cshtml",
+  "SelectedNode": "\\QuanLiTinTuc.sln",
   "PreviewInSolutionExplorer": false
 }
