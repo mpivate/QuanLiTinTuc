@@ -16,11 +16,21 @@ namespace QuanLiTinTuc.Controllers
         }
 
         //Chủ đề
-        public ActionResult ChuDe(string ChuDe)
+        public ActionResult ChuDe(string ChuDe, string keyword)
         {
-            List<TinTuc> DanhSachTinTuc = db.TinTucs.Where(e => e.ChuDe == ChuDe).ToList();
-            return View(DanhSachTinTuc);
+            var ketQuaTimKiem = db.TinTucs.AsQueryable();
+            if (!string.IsNullOrEmpty(ChuDe))
+            {
+                ketQuaTimKiem = ketQuaTimKiem.Where(t => t.ChuDe.Contains(ChuDe));
+            }
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                ketQuaTimKiem = ketQuaTimKiem.Where(t => t.TieuDe.Contains(keyword));
+            }
+            return View(ketQuaTimKiem);
         }
+
         public ActionResult ChuDeView(int Id)
         {
             TinTuc TinThoaMan = db.TinTucs.Where(e => e.Id == Id).FirstOrDefault();

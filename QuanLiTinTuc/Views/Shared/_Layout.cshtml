@@ -28,7 +28,7 @@
     <link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet'>
     <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 </head>
-<body>
+<body class="sidebar-collapse">
 
     <div class="wrapper">
 
@@ -60,20 +60,20 @@
             <ul class="navbar-nav ml-auto">
                 <!-- Navbar Search -->
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+                    <a class="nav-link" data-widget="navbar-search" href="#" role="button" id="searchIcon">
                         <i class="fas fa-search"></i>
                     </a>
                     <div class="navbar-search-block">
-                        <form class="form-inline">
+                        <form class="form-inline" id="searchForm">
                             <div class="input-group input-group-sm">
-                                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                                <input class="form-control form-control-navbar" type="search" id="searchInput" placeholder="Nhập từ khóa tìm kiếm" aria-label="Search">
                                 <div class="input-group-append">
-                                    <button class="btn btn-navbar" type="submit">
+                                    <button class="btn btn-navbar" type="submit" id="submitSearch">
                                         <i class="fas fa-search"></i>
                                     </button>
-                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                                    @*<button class="btn btn-navbar" type="button" data-widget="navbar-search" id="closeSearch">
                                         <i class="fas fa-times"></i>
-                                    </button>
+                                    </button>*@
                                 </div>
                             </div>
                         </form>
@@ -260,7 +260,7 @@
     <script src="~/Scripts/dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="~/Scripts/dist/js/pages/dashboard.js"></script>
-    
+
     <script>
         // Hàm kiểm tra đường dẫn và áp dụng class "active" cho thẻ tương ứng
         function setActiveLink() {
@@ -280,6 +280,53 @@
         }
         window.addEventListener('load', setActiveLink);
         window.addEventListener('popstate', setActiveLink);
+    </script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var searchForm = document.getElementById("searchForm");
+            var searchInput = document.getElementById("searchInput");
+            var submitSearch = document.getElementById("submitSearch");
+            var closeSearch = document.getElementById("closeSearch");
+
+            // Bắt sự kiện khi nhấn Enter trên input
+            searchInput.addEventListener("keypress", function (event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    handleSearch();
+                }
+            });
+
+            // Bắt sự kiện khi nhấn nút tìm kiếm
+            submitSearch.addEventListener("click", function (event) {
+                event.preventDefault();
+                handleSearch();
+            });
+
+            // Bắt sự kiện khi nhấn nút đóng tìm kiếm
+            closeSearch.addEventListener("click", function (event) {
+                event.preventDefault();
+                closeSearchForm();
+            });
+
+            // Hàm xử lý khi thực hiện tìm kiếm
+            function handleSearch() {
+                var searchTerm = searchInput.value.trim();
+                // Thực hiện xử lý tìm kiếm hoặc chuyển hướng đến controller
+                var redirectURL = "https://" + window.location.host + "/Home/ChuDe?keyword=" + encodeURIComponent(searchTerm);
+                window.location.href = redirectURL;
+                console.log(redirectURL);
+                // Thêm mã xử lý tìm kiếm hoặc chuyển hướng tới controller ở đây
+            }
+
+            // Hàm đóng form tìm kiếm
+            function closeSearchForm() {
+                searchInput.value = "";
+                // Thêm mã để ẩn form tìm kiếm ở đây nếu cần
+                console.log("Closing search form");
+            }
+        });
     </script>
 </body>
 </html>

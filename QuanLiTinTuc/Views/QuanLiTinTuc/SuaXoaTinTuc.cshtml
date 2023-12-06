@@ -30,14 +30,45 @@
 </h1>
 
 <div class="card">
-    <div class="input-group input-group-sm ml-auto" style="width: 250px;">
-        <input type="text" name="txt_search" id="txt_search" class="form-control float-right" placeholder="Tìm kiếm theo tiêu đề">
-        <div class="input-group-append">
-            <button id="btn_search_action" type="button" class="btn btn-default" onclick="searchTinTuc()">
-                <i class="fas fa-search"></i>
-            </button>
+        <!-- /.container-fluid -->
+
+
+    <div class="d-flex" style="width: auto; margin: 8px;">
+        <div class="input-group input-group-sm">
+            <div class="">
+                    <a href="/QuanLiTinTuc/ThemTinTuc" type="button" class="btn btn-block btn-primary btn-sm">Thêm mới tin tức</a>
+            </div>
         </div>
+        @*Tìm kiếm theo tiêu đề*@
+        <div class="input-group input-group-sm">
+            <input type="text" name="txt_search" id="txt_search" class="form-control float-right" placeholder="Tìm kiếm theo tiêu đề">
+            <div class="input-group-append">
+                <button id="btn_search_action" type="button" class="btn btn-default" onclick="searchTinTuc()">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        @*Tìm kiếm theo chủ đề*@
+        <div class="input-group input-group-sm ml-2"  style="width: 600px;">
+            <select id="ddl_chude" class="form-control">
+                <option selected value="">Tất cả chủ đề</option>
+                <option value="TheGioi">Thế Giới</option>
+                <option value="KinhDoanh">Kinh Doanh</option>
+                <option value="BatDongSan">Bất Động Sản</option>
+                <option value="KhoaHoc">Khoa Học</option>
+                <option value="GiaiTri">Giải Trí</option>
+                <!-- Thêm các option khác tương ứng với danh sách chủ đề của bạn -->
+            </select>
+            <div class="input-group-append">
+                <button id="btn_filter_action" type="button" class="btn btn-default" onclick="searchTinTuc()">
+                    <i class="fas fa-filter"></i>
+                </button>
+            </div>
+        </div>
+
     </div>
+
     <table>
         <tr>
             <th>
@@ -106,21 +137,32 @@
 
 
 <script>
+    $('#ddl_chude').change(function () {
+        searchTinTuc()
+    });
+
     function searchTinTuc() {
         var keyword = $("#txt_search").val();
+        var selectedChuDe = $("#ddl_chude").val();
 
-        // Lưu giá trị keyword vào sessionStorage để giữ nguyên sau khi trang tải lại
+        // Lưu giá trị keyword và selectedChuDe vào sessionStorage để giữ nguyên sau khi trang tải lại
         sessionStorage.setItem("searchKeyword", keyword);
+        sessionStorage.setItem("selectedChuDe", selectedChuDe);
 
-        window.location.href = "/QuanLiTinTuc/TimKiemTinTuc?keyword=" + keyword;
+        window.location.href = "/QuanLiTinTuc/TimKiemTinTuc?keyword=" + keyword + "&chuDe=" + selectedChuDe;
     }
 
-    // Hàm này sẽ chạy khi trang được tải lại
     $(document).ready(function () {
-        // Lấy giá trị keyword từ sessionStorage và đặt vào ô tìm kiếm
+        // Lấy giá trị keyword và selectedChuDe từ sessionStorage và đặt vào ô tìm kiếm và dropdown
         var storedKeyword = sessionStorage.getItem("searchKeyword");
+        var storedChuDe = sessionStorage.getItem("selectedChuDe");
+
         if (storedKeyword) {
             $("#txt_search").val(storedKeyword);
+        }
+
+        if (storedChuDe) {
+            $("#ddl_chude").val(storedChuDe);
         }
 
         // Nghe sự kiện keypress trên ô tìm kiếm
@@ -133,3 +175,4 @@
         });
     });
 </script>
+
