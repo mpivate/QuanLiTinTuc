@@ -45,7 +45,7 @@ namespace QuanLiTinTuc.Controllers
             acc.UserName = userName;
             acc.PassWord = password;
             acc.FullName = fullName;
-            acc.QuyenTruyCap = "nguoidung";
+            acc.QuyenTruyCap = "User";
 
             db.Accounts.Add(acc);
             db.SaveChanges();
@@ -72,6 +72,7 @@ namespace QuanLiTinTuc.Controllers
                 {
                     if (ac.PassWord == password)
                     {
+                        Session["quyenTruyCap"] = ac.QuyenTruyCap;
                         return Json(new { status = 200, message = "Đăng nhập thành công" });
                     }
                     else return Json(new { status = 403, message = "Nhập sai mật khẩu vui lòng nhập lại!" });
@@ -82,6 +83,20 @@ namespace QuanLiTinTuc.Controllers
         //Get view:QLTaiKhoanAdmin
         public ActionResult QLTaiKhoanAdmin()
         {
+            var quyenTruyCap = Session["quyenTruyCap"] as string;
+
+            if (quyenTruyCap != null && quyenTruyCap == "Admin")
+            {
+                // Người dùng có quyền "Admin"
+                return View();
+            }
+
+            // Người dùng không có quyền "Admin"
+            return View("AccessDenied");
+        }
+        //Get view:QLTaiKhoanUser
+        public ActionResult QLTaiKhoanUser()
+        {
             return View();
         }
         //Get view:SuaThongTinTaiKhoan
@@ -90,9 +105,19 @@ namespace QuanLiTinTuc.Controllers
             return View();
         }
         //Get view:ThemTaiKhoanAdmin
+
         public ActionResult ThemTaiKhoanAdmin()
         {
-            return View();
+            var quyenTruyCap = Session["quyenTruyCap"] as string;
+
+            if (quyenTruyCap != null && quyenTruyCap == "Admin")
+            {
+                // Người dùng có quyền "Admin"
+                return View();
+            }
+
+            // Người dùng không có quyền "Admin"
+            return View("AccessDenied");
         }
 
         //Lay danh sach TK

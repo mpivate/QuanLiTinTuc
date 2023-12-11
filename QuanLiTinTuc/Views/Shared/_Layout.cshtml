@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var user = HttpContext.Current.Session["userName"];
+    var quyenTruyCap = Session["quyenTruyCap"] as string;
+
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -195,10 +201,9 @@
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">
-                            @{
-                                var user = HttpContext.Current.Session["userName"];
-                                @user
-                            }
+
+                            @user
+
                         </a>
                     </div>
                 </div>
@@ -228,71 +233,106 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tree"></i>
-                                <p>
-                                    Quản lí tài khoản
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/QuanLiTaiKhoan/QLTaiKhoanAdmin" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Admin</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/UI/icons.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>User</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-edit"></i>
-                                <p>
-                                    Quản lí tin tức
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item ">
-                                    <a href="/QuanLiTinTuc/ThemTinTuc" class="nav-link">
-                                        <i class="nav-icon far fa-circle text-primary"></i>
-                                        <p>Thêm tin tức</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/QuanLiTinTuc/SuaXoaTinTuc" class="nav-link">
-                                        <i class="nav-icon far fa-circle text-warning"></i>
-                                        <p>Sửa hoặc xóa tin tức</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                        @{
+                            if (quyenTruyCap != null)
+                            {
+                               
 
-                        <li class="nav-item">
-                            <a href="/QuanLiTaiKhoan/Login" class="nav-link">
-                                <i class="nav-icon fas fa-user"></i>
-                                <p>
-                                    Đăng Nhập
-                                </p>
-                            </a>
-                        </li>
+                                if (quyenTruyCap == "Admin")
+                                {
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="nav-icon fas fa-tree"></i>
+                                            <p>
+                                                Quản lí tài khoản
+                                                <i class="fas fa-angle-left right"></i>
+                                            </p>
+                                        </a>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item">
+                                                <a href="/QuanLiTaiKhoan/QLTaiKhoanAdmin" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Admin</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
 
-                        <li class="nav-item">
-                            <a href="/QuanLiTaiKhoan/Register" class="nav-link">
-                                <i class="nav-icon fas fa-arrow-alt-circle-right"></i>
+                                                <a href="/QuanLiTaiKhoan/QLTaiKhoanUser?UserName=@user" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>User</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="nav-icon fas fa-edit"></i>
+                                            <p>
+                                                Quản lí tin tức
+                                                <i class="fas fa-angle-left right"></i>
+                                            </p>
+                                        </a>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item ">
+                                                <a href="/QuanLiTinTuc/ThemTinTuc" class="nav-link">
+                                                    <i class="nav-icon far fa-circle text-primary"></i>
+                                                    <p>Thêm tin tức</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="/QuanLiTinTuc/SuaXoaTinTuc" class="nav-link">
+                                                    <i class="nav-icon far fa-circle text-warning"></i>
+                                                    <p>Sửa hoặc xóa tin tức</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="nav-icon fas fa-tree"></i>
+                                            <p>
+                                                Quản lí tài khoản
+                                                <i class="fas fa-angle-left right"></i>
+                                            </p>
+                                        </a>
+                                        <ul class="nav nav-treeview">
 
-                                <p>
-                                    Đăng kí
-                                </p>
-                            </a>
-                        </li>
+                                            <li class="nav-item">
+
+                                                <a href="/QuanLiTaiKhoan/QLTaiKhoanUser?UserName=@user" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>User</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                }
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a href="/QuanLiTaiKhoan/Login" class="nav-link">
+                                        <i class="nav-icon fas fa-user"></i>
+                                        <p>
+                                            Đăng Nhập
+                                        </p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="/QuanLiTaiKhoan/Register" class="nav-link">
+                                        <i class="nav-icon fas fa-arrow-alt-circle-right"></i>
+
+                                        <p>
+                                            Đăng kí
+                                        </p>
+                                    </a>
+                                </li>
+                            }
+                        }
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

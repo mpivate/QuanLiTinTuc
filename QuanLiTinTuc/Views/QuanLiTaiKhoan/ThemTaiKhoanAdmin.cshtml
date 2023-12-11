@@ -1,8 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "QLTaiKhoanUser";
+    ViewBag.Title = "ThemTaiKhoanAdmin";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -27,7 +28,7 @@
             <div class="col-md-6">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Sửa thông tin tài khoản</h3>
+                        <h3 class="card-title">Thêm mới tài khoản</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
@@ -35,7 +36,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="txt_UserName">Tài khoản</label>
-                                <input type="text" class="form-control" id="txt_UserName" name="txt_UserName" placeholder="Enter text" readonly>
+                                <input type="text" class="form-control" id="txt_UserName" name="txt_UserName" placeholder="Enter text">
                             </div>
                             <div class="form-group">
                                 <label for="txt_Password">Mật khẩu</label>
@@ -47,7 +48,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="txt_FullName">Họ tên</label>
-                                <input type="text" class="form-control" id="txt_FullName" name="txt_FullName" placeholder="text">
+                                <input type="text" class="form-control" id="txt_FullName" name="txt_FullName" placeholder="Họ tên">
                             </div>
 
                             <div class="form-group">
@@ -62,7 +63,7 @@
 
                             <div class="card-footer">
 
-                                <button type="submit" class="btn btn-primary" id="btn_sua">Submit</button>
+                                <button type="submit" class="btn btn-primary" id="btn_them">Submit</button>
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -74,135 +75,59 @@
 
     </div>
 </section>
+
 <script>
     $(document).ready(function () {
-        var url = new URL(window.location.href);
-        var tk = url.searchParams.get("UserName");
+        $("#btn_them").click(function () {
 
-        //trường hợp không rỗng
-        var formData = new FormData();
-        formData.append("UserName", tk);
-
-        $.ajax(
-            {
-                type: "POST",
-                data: formData,
-                contentType: "application/json; charset=utf-8",
-                url: window.location.origin + '/QuanLiTaiKhoan/get_TK_Info',
-                processData: false,
-                contentType: false,
-                cache: false,
-                success: function (response) {
-                    //alert(response);
-                    if (response.indexOf("Không tìm thấy") >= 0 || response.indexOf("thất bại") >= 0) {
-                        //trường hợp lỗi
-                        alert(response);
-                    }
-                    else {
-                        //trường hợp tìm thấy sinh viên cần sửa
-                        /*console.log(response);*/
-                        var sv_obj = JSON.parse(response);
-
-                        $("#txt_UserName").val(sv_obj.UserName);
-                        $("#txt_FullName").val(sv_obj.FullName);
-                        $("#txt_Password").val(sv_obj.PassWord);
-                        $("#txt_nhaclaiPassword").val(sv_obj.PassWord);
-                        //$("#txt_nhaclai_matkhau").val(sv_obj.MatKhau);
-                        //console.log(sv_obj.MSSV);
-                    }
-                },
-                error: function (response) {
-                    alert("Xử lý lấy thông tin sinh viên cần sửa thất bại");
-
+            //kỹ thuật validate input requiment phía view
+            var input_require = $(".require");
+            var is_require_all = true;
+            for (i = 0; i < input_require.length; i++) {
+                if (!$(input_require[i]).val()) {
+                    is_require_all = false;
                 }
             }
-        );
-    })
 
-    $("#btn_sua").click(function () {
+            if (is_require_all) {
+                //trường hợp không rỗng
+                var form = $('#frm_data')[0];
+                var formData = new FormData(form);
+                //console.log(window.location.origin + '/QLTaiKhoanAdmin/Add');
 
-        //kỹ thuật validate input requiment phía view
-        var input_require = $(".require");
-        var is_require_all = true;
-        for (i = 0; i < input_require.length; i++) {
-            if (!$(input_require[i]).val()) {
-                is_require_all = false;
-            }
-        }
+                $.ajax(
+                    {
+                        type: "POST",
+                        //data: {id: $("#hosothisinh_id").html()},
+                        data: formData,
+                        //data: JSON.stringify(lst),
+                        contentType: "application/json; charset=utf-8",
+                        url: window.location.origin + '/QuanLiTaiKhoan/Add',
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        success: function (response) {
+                            if (response.includes("Thêm mới tài khoản thành công")) {
+                                // Chuyển hướng nếu thành công
+                                window.location.href = '/QuanLiTaiKhoan/QLTaiKhoanAdmin';
+                                alert(response);
+                            } else {
+                                // Hiển thị thông báo lỗi nếu thất bại
+                                alert(response);
+                            }
 
-        if (is_require_all) {
-            //trường hợp không rỗng
-
-
-            var form = $('#frm_data')[0];
-            var formData = new FormData(form);
-
-            //console.log(window.location.origin + '/QuanLiTaiKhoan/Edit');
-
-            $.ajax(
-                {
-                    type: "POST",
-                    //data: {id: $("#hosothisinh_id").html()},
-                    data: formData,
-                    //data: JSON.stringify(lst),
-                    contentType: "application/json; charset=utf-8",
-                    url: window.location.origin + '/QuanLiTaiKhoan/Edit',
-                    processData: false,
-                    contentType: false,
-                    cache: false,
-                    success: function (response) {
-                        //alert(response);
-                        if (response.includes("Cập nhật thông tin sinh viên thành công")) {
-                            // Chuyển hướng nếu thành công
-                            window.location.href = '/QuanLiTaiKhoan/QLTaiKhoanAdmin';
-                            alert(response);
-                        } else {
-                            // Hiển thị thông báo lỗi nếu thất bại
-                            alert(response);
+                        },
+                        error: function (response) {
+                            alert("Xử lý thêm mới thất bại");
                         }
-                    },
-                    error: function (response) {
-                        alert("Xử lý cập nhật thông tin sv thất bại");
                     }
-                }
-            );
-        }
-        else {
-            //trường hợp mssv rỗng
-            alert("Vui lòng điền vào các trường dữ liệu bắt buộc");
-        }
+                );
+            }
+            else {
+                //trường hợp mssv rỗng
+                alert("Vui lòng điền vào các trường dữ liệu bắt buộc");
+            }
+        })
     })
-
-    //$(document).ready(function () {
-    //    var url = new URL(window.location.href);
-    //    var id = url.searchParams.get("id");
-
-    //    var formData = new FormData();
-    //    formData.append("id", id);
-
-    //    console.log(id);
-
-    //    $.ajax(
-    //        {
-    //            type: "POST",
-    //            //data: {id: id},
-    //            data: formData,
-    //            //data: JSON.stringify(lst),
-    //            contentType: "application/json; charset=utf-8",
-    //            url: window.location.origin + '/QLSV/get_SV_Edit',
-    //            processData: false,
-    //            contentType: false,
-    //            cache: false,
-    //            success: function (response) {
-    //                //alert(response);
-    //                $("#div_noft").html(response);
-    //            },
-    //            error: function (response) {
-    //                alert("Xử lý thêm mới thất bại");
-    //            }
-    //        }
-    //    );
-    //})
 </script>
-
 
