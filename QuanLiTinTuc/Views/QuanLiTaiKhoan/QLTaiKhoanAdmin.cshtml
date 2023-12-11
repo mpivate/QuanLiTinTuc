@@ -3,12 +3,17 @@
     ViewBag.Title = "QuanLiTaiKhoanAdmin";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h1 style="font-size: 32px; line-height: 150%; font-family: 'Merriweather',serif; font-weight: bold; margin-top: 25px; margin-bottom: 15px; color: #9f224e; text-align: center;">
-    Quản lí tài khoản admin
-</h1>
-
-
+<!-- Content Wrapper. Contains page content -->
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Quản lí tin tức</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -129,7 +134,7 @@
                             //console.log(rs.Data);
                             var str = "";
                             for (var i = 0; i < rs.Data.length; i++) {
-                                str += "<tr> <td> " + (i+1) + " </td><td> " + rs.Data[i].UserName + " </td><td> " + rs.Data[i].PassWord + " </td><td> " + rs.Data[i].FullName + " </td><td> " + rs.Data[i].QuyenTruyCap + "</td> <td><a href='./SuaThongTinTaiKhoan?UserName=" + rs.Data[i].UserName + "' class=' btn  btn-outline-warning border-0'> <i class='fa fa-pen' > </i> </a> <button type='button' onclick='Delete_obj(\"" + rs.Data[i].UserName + "\")' class='btn btn-outline-danger border-0'> <i class='fa fa-trash' > </i> </button> </td> </tr>";
+                                str += "<tr> <td> " + (i + 1) + " </td><td> " + rs.Data[i].UserName + " </td><td> " + rs.Data[i].PassWord + " </td><td> " + rs.Data[i].FullName + " </td><td> " + rs.Data[i].QuyenTruyCap + "</td> <td><a href='./SuaThongTinTaiKhoan?UserName=" + rs.Data[i].UserName + "' class=' btn  btn-outline-warning border-0'> <i class='fa fa-pen' > </i> </a> <button type='button' onclick='Delete_obj(\"" + rs.Data[i].UserName + "\")' class='btn btn-outline-danger border-0'> <i class='fa fa-trash' > </i> </button> </td> </tr>";
                             }
                             $("#tbl_data").html(str);
                         }

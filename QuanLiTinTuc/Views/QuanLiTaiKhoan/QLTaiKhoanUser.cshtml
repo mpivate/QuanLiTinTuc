@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "QLTaiKhoanUser";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var user = HttpContext.Current.Session["userName"];
 }
 
 <!-- Content Header (Page header) -->
@@ -27,7 +28,7 @@
             <div class="col-md-6">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Sửa thông tin tài khoản</h3>
+                        <h3 class="card-title">Thông tin tài khoản</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
@@ -38,31 +39,13 @@
                                 <input type="text" class="form-control" id="txt_UserName" name="txt_UserName" placeholder="Enter text" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="txt_Password">Mật khẩu</label>
-                                <input type="password" class="form-control" id="txt_Password" name="txt_Password" placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <label for="txt_nhaclaiPassword">Nhập lại mật khẩu</label>
-                                <input type="password" class="form-control" id="txt_nhaclaiPassword" name="txt_nhaclaiPassword" placeholder="Password">
-                            </div>
-                            <div class="form-group">
                                 <label for="txt_FullName">Họ tên</label>
                                 <input type="text" class="form-control" id="txt_FullName" name="txt_FullName" placeholder="text">
                             </div>
 
-                            <div class="form-group">
-                                <label for="cbx_quyenTruyCap">Quyền truy cập</label>
-                                <select class="form-control" id="cbx_quyenTruyCap" name="cbx_quyenTruyCap">
-                                    <option value="Admin">Admin</option>
-                                    <option value="User">User</option>
-
-                                </select>
-                            </div>
-
-
                             <div class="card-footer">
 
-                                <button type="submit" class="btn btn-primary" id="btn_sua">Submit</button>
+                                <a href="/QuanLiTaiKhoan/SuaThongTinTaiKhoan?UserName=@user" type="submit" class="btn btn-primary">Đổi mật khẩu hoặc họ tên</a>
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -105,74 +88,19 @@
 
                         $("#txt_UserName").val(sv_obj.UserName);
                         $("#txt_FullName").val(sv_obj.FullName);
-                        $("#txt_Password").val(sv_obj.PassWord);
-                        $("#txt_nhaclaiPassword").val(sv_obj.PassWord);
-                        $("#cbx_quyenTruyCap").val(sv_obj.QuyenTruyCap);
                         //$("#txt_nhaclai_matkhau").val(sv_obj.MatKhau);
                         //console.log(sv_obj.MSSV);
                     }
                 },
                 error: function (response) {
-                    alert("Xử lý lấy thông tin sinh viên cần sửa thất bại");
+                    alert("Xử lý lấy thông tin tài khoản thất bại");
 
                 }
             }
         );
     })
 
-    $("#btn_sua").click(function () {
 
-        //kỹ thuật validate input requiment phía view
-        var input_require = $(".require");
-        var is_require_all = true;
-        for (i = 0; i < input_require.length; i++) {
-            if (!$(input_require[i]).val()) {
-                is_require_all = false;
-            }
-        }
-
-        if (is_require_all) {
-            //trường hợp không rỗng
-
-
-            var form = $('#frm_data')[0];
-            var formData = new FormData(form);
-
-            //console.log(window.location.origin + '/QuanLiTaiKhoan/Edit');
-
-            $.ajax(
-                {
-                    type: "POST",
-                    //data: {id: $("#hosothisinh_id").html()},
-                    data: formData,
-                    //data: JSON.stringify(lst),
-                    contentType: "application/json; charset=utf-8",
-                    url: window.location.origin + '/QuanLiTaiKhoan/Edit',
-                    processData: false,
-                    contentType: false,
-                    cache: false,
-                    success: function (response) {
-                        //alert(response);
-                        if (response.includes("Cập nhật thông tin sinh viên thành công")) {
-                            // Chuyển hướng nếu thành công
-                            window.location.href = '/QuanLiTaiKhoan/QLTaiKhoanAdmin';
-                            alert(response);
-                        } else {
-                            // Hiển thị thông báo lỗi nếu thất bại
-                            alert(response);
-                        }
-                    },
-                    error: function (response) {
-                        alert("Xử lý cập nhật thông tin sv thất bại");
-                    }
-                }
-            );
-        }
-        else {
-            //trường hợp mssv rỗng
-            alert("Vui lòng điền vào các trường dữ liệu bắt buộc");
-        }
-    })
 
     //$(document).ready(function () {
     //    var url = new URL(window.location.href);

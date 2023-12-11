@@ -17,7 +17,16 @@ namespace QuanLiTinTuc.Controllers
 
         public ActionResult ThemTinTuc() 
         {
-            return View();
+            var quyenTruyCap = Session["quyenTruyCap"] as string;
+
+            if (quyenTruyCap != null && quyenTruyCap == "Admin")
+            {
+                // Người dùng có quyền "Admin"
+                return View();
+            }
+
+            // Người dùng không có quyền "Admin"
+            return View("AccessDenied");
         }
         [HttpPost]
         [ValidateInput(false)]
@@ -46,12 +55,23 @@ namespace QuanLiTinTuc.Controllers
 
         public ActionResult SuaXoaTinTuc()
         {
-            List<TinTuc> list_TinTuc = db.TinTucs.ToList();
-            return View(list_TinTuc);
+            var quyenTruyCap = Session["quyenTruyCap"] as string;
+
+            if (quyenTruyCap != null && quyenTruyCap == "Admin")
+            {
+                // Người dùng có quyền "Admin"
+                List<TinTuc> list_TinTuc = db.TinTucs.ToList();
+                return View(list_TinTuc);
+            }
+
+            // Người dùng không có quyền "Admin"
+            return View("AccessDenied");
+            
         }
         [HttpPost]
         public ActionResult SuaXoaTinTuc(string keyword)
         {
+
             List<TinTuc> list_TinTuc;
 
             if (string.IsNullOrEmpty(keyword))

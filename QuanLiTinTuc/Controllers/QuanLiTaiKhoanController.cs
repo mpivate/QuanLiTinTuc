@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Services.Description;
@@ -35,7 +36,7 @@ namespace QuanLiTinTuc.Controllers
             string password = Request["password"];
             string retypePassword = Request["retypePassword"];
 
-            List <string> list_acc = db.Accounts.Select(p => p.UserName).ToList();
+            List<string> list_acc = db.Accounts.Select(p => p.UserName).ToList();
             if (list_acc.Contains(userName))
             {
                 var errorMessage = "Tên người dùng đã tồn tại!";
@@ -45,7 +46,7 @@ namespace QuanLiTinTuc.Controllers
             acc.UserName = userName;
             acc.PassWord = password;
             acc.FullName = fullName;
-            acc.QuyenTruyCap = "nguoidung";
+            acc.QuyenTruyCap = "User";
 
             db.Accounts.Add(acc);
             db.SaveChanges();
@@ -66,21 +67,36 @@ namespace QuanLiTinTuc.Controllers
             Session["userName"] = userName;
 
             List<Account> list_acc = db.Accounts.ToList();
-            foreach(var ac in list_acc)
+            foreach (var ac in list_acc)
             {
                 if (ac.UserName == userName)
                 {
                     if (ac.PassWord == password)
                     {
+                        Session["quyenTruyCap"] = ac.QuyenTruyCap;
                         return Json(new { status = 200, message = "Đăng nhập thành công" });
                     }
                     else return Json(new { status = 403, message = "Nhập sai mật khẩu vui lòng nhập lại!" });
-                }   
+                }
             }
             return Json(new { status = 404, message = "Tên đăng nhập không tồn tại!" });
         }
         //Get view:QLTaiKhoanAdmin
         public ActionResult QLTaiKhoanAdmin()
+        {
+            var quyenTruyCap = Session["quyenTruyCap"] as string;
+
+            if (quyenTruyCap != null && quyenTruyCap == "Admin")
+            {
+                // Người dùng có quyền "Admin"
+                return View();
+            }
+
+            // Người dùng không có quyền "Admin"
+            return View("AccessDenied");
+        }
+        //Get view:QLTaiKhoanUser
+        public ActionResult QLTaiKhoanUser()
         {
             return View();
         }
@@ -90,9 +106,19 @@ namespace QuanLiTinTuc.Controllers
             return View();
         }
         //Get view:ThemTaiKhoanAdmin
+
         public ActionResult ThemTaiKhoanAdmin()
         {
-            return View();
+            var quyenTruyCap = Session["quyenTruyCap"] as string;
+
+            if (quyenTruyCap != null && quyenTruyCap == "Admin")
+            {
+                // Người dùng có quyền "Admin"
+                return View();
+            }
+
+            // Người dùng không có quyền "Admin"
+            return View("AccessDenied");
         }
 
         //Lay danh sach TK
@@ -407,6 +433,17 @@ namespace QuanLiTinTuc.Controllers
             }
 
             return JsonConvert.SerializeObject(rs);
+        }
+        public ActionResult Logout()
+        {
+            // Đăng xuất người dùng
+
+            // Xóa thông tin quyền sử dụng khỏi Session (nếu bạn sử dụng Session)
+            Session.Remove("QuyenTruyCap");
+            Session.Remove("userName");
+
+            // Chuyển hướng đến trang đăng nhập hoặc trang chính
+            return Redirect("/Home/ChuDe");
         }
     }
 }
