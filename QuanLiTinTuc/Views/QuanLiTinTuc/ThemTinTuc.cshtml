@@ -73,6 +73,7 @@
     $(document).ready(function () {
         $('#btn_submit').click(function () {
             // Kiểm tra các trường input
+            var chuDe = $('select[name="ChuDe"]').val();
             var tieuDe = $('input[name="TieuDe"]').val();
             var tomTat = $('input[name="TomTat"]').val();
             var anh = $('input[name="Anh"]').val();
@@ -133,7 +134,7 @@
                 cache: false,
                 success: function (response) {
                     alert('Thêm tin mới thành công');
-                    window.location.href = window.location.origin + '/Home/ChuDe?ChuDe=TheGioi';
+                    window.location.href = window.location.origin + '/Home/ChuDe?ChuDe=' + chuDe;
                 },
                 error: function (response) {
                     alert('Thêm tin mới thất bại');

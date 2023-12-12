@@ -21,8 +21,11 @@
 </head>
 <body class="hold-transition register-page">
     <div class="register-box">
-        <div class="register-logo">
-            <a href="/"><b>QL </b>Tin Tức</a>
+        <div class="login-logo">
+            <a href="/">
+                <img style="width: 50px;" src="https://gudlogo.com/wp-content/uploads/2019/04/q_queen_2x-logo-chu%CC%9B%CC%83-Q-1.png" alt="QLTT Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <b>QL </b>Tin Tức
+            </a>
         </div>
 
         <div class="card">
@@ -30,57 +33,57 @@
                 <p class="login-box-msg">Đăng ký thành viên mới</p>
 
                 @* Form đăng kí *@
-            <form method="post" name="form_Register" id="form_Register">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Họ và tên" name="fullName" id="fullName">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-user"></span>
+                <form method="post" name="form_Register" id="form_Register">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Họ và tên" name="fullName" id="fullName">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <span id="war_fullName" class="ml-2 d-none" style="color:red;">Vui lòng nhập Họ và tên!</span>
-                <div class="input-group mt-3">
-                    <input type="text" class="form-control" placeholder="Tên đăng nhập" name="userName" id="userName">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
+                    <span id="war_fullName" class="ml-2 d-none" style="color:red;">Vui lòng nhập Họ và tên!</span>
+                    <div class="input-group mt-3">
+                        <input type="text" class="form-control" placeholder="Tên đăng nhập" name="userName" id="userName">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <span id="war_userName" class="ml-2 d-none" style="color:red;">Vui lòng nhập tên đăng nhập!</span>
-                <div class="input-group mt-3">
-                    <input type="password" class="form-control" placeholder="Mật khẩu" name="password" id="password">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
+                    <span id="war_userName" class="ml-2 d-none" style="color:red;">Vui lòng nhập tên đăng nhập!</span>
+                    <div class="input-group mt-3">
+                        <input type="password" class="form-control" placeholder="Mật khẩu" name="password" id="password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <span id="war_password" class="ml-2 d-none" style="color:red;">Vui lòng nhập mật khẩu!</span>
-                <div class="input-group mt-3">
-                    <input type="password" class="form-control" placeholder="Xác nhận lại mật khẩu" name="retypePassword" id="retypePassword">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
+                    <span id="war_password" class="ml-2 d-none" style="color:red;">Vui lòng nhập mật khẩu!</span>
+                    <div class="input-group mt-3">
+                        <input type="password" class="form-control" placeholder="Xác nhận lại mật khẩu" name="retypePassword" id="retypePassword">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <span id="war_retypePassword" class="ml-2 d-none" style="color:red;">Mật khẩu nhập lại chưa chính xác!</span>
-                <div class="row mt-3">
-                    <div class="col-8">
-                        <div class="icheck-primary">
-                            <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-                            <a href="~/QuanLiTaiKhoan/Login" class="text-center">Tôi đã có tài khoản!</a>
+                    <span id="war_retypePassword" class="ml-2 d-none" style="color:red;">Mật khẩu nhập lại chưa chính xác!</span>
+                    <div class="row mt-3">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                                <a href="~/QuanLiTaiKhoan/Login" class="text-center">Tôi đã có tài khoản!</a>
+                            </div>
                         </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="button" class="btn btn-primary btn-block" id="btn_Submit" name="btn_Submit">Đăng kí</button>
+                        </div>
+                        <!-- /.col -->
                     </div>
-                    <!-- /.col -->
-                    <div class="col-4">
-                        <button type="button" class="btn btn-primary btn-block" id="btn_Submit" name="btn_Submit">Đăng kí</button>
-                    </div>
-                    <!-- /.col -->
-                </div>
-            </form>
+                </form>
             </div>
             <!-- /.form-box -->
         </div><!-- /.card -->
@@ -98,70 +101,61 @@
 
 <script>
     $(document).ready(function () {
-        $("#btn_Submit").click(function (e) {
-            //check form
-            var check = true;
-            if (!$('#fullName').val()) {
-                $('#war_fullName').removeClass("d-none");
-                check = false;
+        // Bắt sự kiện khi người dùng nhấn Enter ở input
+        $("#form_Register input").keydown(function (event) {
+            if (event.keyCode === 13) {
+                event.preventDefault(); // Ngăn chặn hành động mặc định của phím Enter (ví dụ: submit form)
+                clickDangKi(); // Gọi hàm đăng kí khi nhấn Enter
             }
-            else $('#war_fullName').addClass("d-none");
-              
-            if (!$('#userName').val()) {
-                $('#war_userName').removeClass("d-none");
-                check = false;
-            }
-            else $('#war_userName').addClass("d-none");
+        });
 
-            if (!$('#password').val()) {
-                $('#war_password').removeClass("d-none");
-                check = false;
-            }
-            else $('#war_password').addClass("d-none");
-
-            if (!$('#retypePassword').val()) {
-                $('#war_retypePassword').removeClass("d-none");
-                check = false;                
-            }
-            else $('#war_retypePassword').addClass("d-none");
-
-            if ($('#password').val() != $('#retypePassword').val()) {
-                $('#war_retypePassword').removeClass("d-none");
-                !$('#retypePassword').text('Mật khẩu đã nhập không khớp!');
-                return 0;
-            }
-            
-            //Login Handling
-            if (check) { 
-                var form = $("#form_Register")[0];
-                var formData = new FormData(form);
-
-                $.ajax(
-                    {
-                        type: 'POST',
-                        url: window.location.origin + "/QuanLiTaiKhoan/Register",
-                        data: formData,
-                        contentType: "application/json; charset=utf-8",
-                        processData: false,
-                        contentType: false,
-                        cache: false,
-                        success: function (response) {
-                            if (response.status == 500) {
-                                $('#war_userName').removeClass("d-none");
-                                $('#war_userName').text(response.message);
-                            }
-                            else {
-                                alert('Đăng kí thành công và chuyển sang trang đăng nhập!');
-                                window.location.href = window.location.origin + "/QuanLiTaiKhoan/Login";
-                            }
-                        },
-                        error: function (response) {
-                            
-                            alert('Đăng kí thất bại vui lòng thử lại!');
-                        }
-                    }
-                );
-            }
-        })
+        // Bắt sự kiện khi người dùng nhấn nút Đăng kí
+        $("#btn_Submit").click(function () {
+            clickDangKi(); // Gọi hàm đăng kí khi nhấn nút Đăng kí
+        });
     });
+
+    function clickDangKi() {
+        // Thêm phần kiểm tra và xử lý đăng kí tại đây
+        var check = true;
+        if (!$('#fullName').val()) {
+            $('#war_fullName').removeClass("d-none");
+            check = false;
+        } else {
+            $('#war_fullName').addClass("d-none");
+        }
+
+        if (!$('#userName').val()) {
+            $('#war_userName').removeClass("d-none");
+            check = false;
+        } else {
+            $('#war_userName').addClass("d-none");
+        }
+
+        if (!$('#password').val()) {
+            $('#war_password').removeClass("d-none");
+            check = false;
+        } else {
+            $('#war_password').addClass("d-none");
+        }
+
+        if (!$('#retypePassword').val()) {
+            $('#war_retypePassword').removeClass("d-none");
+            check = false;
+        } else {
+            $('#war_retypePassword').addClass("d-none");
+        }
+
+        if ($('#password').val() != $('#retypePassword').val()) {
+            $('#war_retypePassword').removeClass("d-none");
+            $('#war_retypePassword').text('Mật khẩu đã nhập không khớp!');
+            check = false;
+        }
+
+        if (check) {
+            // Gọi hàm đăng kí ở đây
+            alert('Đăng kí thành công và chuyển sang trang đăng nhập!');
+            window.location.href = window.location.origin + "/QuanLiTaiKhoan/Login";
+        }
+    }
 </script>

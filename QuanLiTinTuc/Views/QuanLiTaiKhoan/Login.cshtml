@@ -21,7 +21,10 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="/"><b>QL </b>Tin Tức</a>
+            <a href="/">
+                <img style="width: 50px;" src="https://gudlogo.com/wp-content/uploads/2019/04/q_queen_2x-logo-chu%CC%9B%CC%83-Q-1.png" alt="QLTT Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <b>QL </b>Tin Tức
+            </a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -65,7 +68,7 @@
                     </div>
                 </form>
 
-                
+
             </div>
             <!-- /.login-card-body -->
         </div>
@@ -80,62 +83,65 @@
 </body>
 </html>
 
-
 <script>
     $(document).ready(function () {
+        // Bắt sự kiện khi người dùng nhấn Enter ở input
+        $("#frm_login input").keydown(function (event) {
+            if (event.keyCode === 13) {
+                event.preventDefault(); // Ngăn chặn hành động mặc định của phím Enter (ví dụ: submit form)
+                clickDangNhap(); // Gọi hàm đăng nhập khi nhấn Enter
+            }
+        });
+
+        // Bắt sự kiện khi người dùng nhấn nút Đăng nhập
         $("#btn_login").click(function () {
-            var form = $("#frm_login")[0];
-            var formData = new FormData(form);
-            var check = true;
-            if (!$('#userName').val()) {
-                $('#war_userName').removeClass("d-none");
-                check = false;
-            }
-            else $('#war_userName').addClass("d-none");
-
-            if (!$('#password').val()) {
-                $('#war_password').removeClass("d-none");
-                check = false;
-            }
-            else $('#war_password').addClass("d-none");
-
-            console.log($('#userName').val());
-            console.log($('#password').val());
-
-            if (check) {
-                $.ajax(
-                    {
-                        type: "POST",
-                        //data: {id: $("#hosothisinh_id").html()},
-                        data: formData,
-                        //data: JSON.stringify(lst),
-                        contentType: "application/json; charset=utf-8",
-                        url: window.location.origin + "/QuanLiTaiKhoan/Login",
-                        processData: false,
-                        contentType: false,
-                        cache: false,
-                        success: function (response) {
-                            if (response.status == 200) {
-                                alert(response.message);
-                                window.location.href = window.location.origin;
-                            }
-                            if (response.status == 403) {
-                                $('#war_password').removeClass("d-none").text(response.message);
-                                return 0;
-                            }
-                            if (response.status == 404) {
-                                $('#war_userName').removeClass("d-none").text(response.message);
-                                return 0;
-                            }
-
-                        },
-                        error: function (response) {
-                            alert("Lỗi không xác định!");
-                        }
-                    }
-                );
-            }
-        })
+            clickDangNhap(); // Gọi hàm đăng nhập khi nhấn nút Đăng nhập
+        });
     });
 
+    function clickDangNhap() {
+        var form = $("#frm_login")[0];
+        var formData = new FormData(form);
+        var check = true;
+
+        // Kiểm tra và hiển thị thông báo lỗi nếu cần
+        if (!$('#userName').val()) {
+            $('#war_userName').removeClass("d-none");
+            check = false;
+        } else {
+            $('#war_userName').addClass("d-none");
+        }
+
+        if (!$('#password').val()) {
+            $('#war_password').removeClass("d-none");
+            check = false;
+        } else {
+            $('#war_password').addClass("d-none");
+        }
+
+        // Nếu không có lỗi, thực hiện đăng nhập
+        if (check) {
+            $.ajax({
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                url: window.location.origin + "/QuanLiTaiKhoan/Login",
+                cache: false,
+                success: function (response) {
+                    if (response.status == 200) {
+                        alert(response.message);
+                        window.location.href = window.location.origin;
+                    } else if (response.status == 403) {
+                        $('#war_password').removeClass("d-none").text(response.message);
+                    } else if (response.status == 404) {
+                        $('#war_userName').removeClass("d-none").text(response.message);
+                    }
+                },
+                error: function (response) {
+                    alert("Lỗi không xác định!");
+                }
+            });
+        }
+    }
 </script>

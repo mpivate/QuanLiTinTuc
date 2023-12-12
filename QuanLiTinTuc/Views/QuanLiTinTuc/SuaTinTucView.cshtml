@@ -69,6 +69,10 @@
 
 <script>
     $(document).ready(function () {
+        var chuDeMoi;
+        $('select[name="ChuDe"]').change(function () {
+            chuDeMoi = $(this).val();
+        });
         $('#btn_submit').click(function () {
             var form = $("#frm_Post")[0];
             var formData = new FormData(form);
@@ -86,7 +90,7 @@
                     cache: false,
                     success: function (response) {
                         alert('Sửa tin mới thành công');
-                        window.location.href = window.location.origin + '/Home/TheGioi';
+                        window.location.href = window.location.origin + '/Home/ChuDe?ChuDe=' + chuDeMoi;
                     },
                     error: function (response) {
                         alert('Sửa tin mới thất bại');

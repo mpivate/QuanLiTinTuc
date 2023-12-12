@@ -33,7 +33,7 @@
     <link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet'>
     <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 </head>
-<body class="sidebar-collapse">
+<body class="layout-navbar-fixed">
 
     <div class="wrapper">
 
@@ -45,19 +45,19 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="/Home/ChuDe?ChuDe=TheGioi" class="nav-link">Thế giới</a>
+                    <a href="/Home/ChuDe?ChuDe=TheGioi" class="nav-link chude">Thế giới</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="/Home/ChuDe?ChuDe=KinhDoanh" class="nav-link">Kinh Doanh</a>
+                    <a href="/Home/ChuDe?ChuDe=KinhDoanh" class="nav-link chude">Kinh Doanh</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="/Home/ChuDe?ChuDe=BatDongSan" class="nav-link">Bất động sản</a>
+                    <a href="/Home/ChuDe?ChuDe=BatDongSan" class="nav-link chude">Bất động sản</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="/Home/ChuDe?ChuDe=KhoaHoc" class="nav-link">Khoa học</a>
+                    <a href="/Home/ChuDe?ChuDe=KhoaHoc" class="nav-link chude">Khoa học</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="/Home/ChuDe?ChuDe=GiaiTri" class="nav-link">Giải trí</a>
+                    <a href="/Home/ChuDe?ChuDe=GiaiTri" class="nav-link chude">Giải trí</a>
                 </li>
             </ul>
 
@@ -102,8 +102,8 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="/" class="brand-link">
-                <img src="~/Scripts/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">QL Tin Tức</span>
+                <img src="https://gudlogo.com/wp-content/uploads/2019/04/q_queen_2x-logo-chu%CC%9B%CC%83-Q-1.png" alt="QLTT Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light"><strong>Ql</strong> Tin Tức</span>
             </a>
 
             <!-- Sidebar -->
@@ -111,7 +111,7 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="~/Scripts/user.png" class="img-circle elevation-2" alt="User Image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeeZNvJQo49XeZkpvdhUgNxxKJFTinS8pjWaJgtcTxKA&s" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">
@@ -150,8 +150,6 @@
                         @{
                             if (quyenTruyCap != null)
                             {
-
-
                                 if (quyenTruyCap == "Admin")
                                 {
                                     <li class="nav-item">
@@ -189,13 +187,13 @@
                                         <ul class="nav nav-treeview">
                                             <li class="nav-item ">
                                                 <a href="/QuanLiTinTuc/ThemTinTuc" class="nav-link">
-                                                    <i class="nav-icon far fa-circle text-primary"></i>
+                                                    <i class="far fa-circle nav-icon"></i>
                                                     <p>Thêm tin tức</p>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a href="/QuanLiTinTuc/SuaXoaTinTuc" class="nav-link">
-                                                    <i class="nav-icon far fa-circle text-warning"></i>
+                                                    <i class="far fa-circle nav-icon"></i>
                                                     <p>Sửa hoặc xóa tin tức</p>
                                                 </a>
                                             </li>
@@ -323,7 +321,7 @@
         function setActiveLink() {
             var currentPath = window.location.pathname + window.location.search;
             // Lấy danh sách tất cả các thẻ a trong navbar
-            var navLinks = document.querySelectorAll('.nav-link');
+            var navLinks = document.querySelectorAll('.nav-link.chude');
 
             // Xóa class 'active' từ tất cả các thẻ a
             navLinks.forEach(function (navLink) {
