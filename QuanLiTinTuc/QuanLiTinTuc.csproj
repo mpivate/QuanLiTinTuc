@@ -2745,6 +2745,10 @@
     <Content Include="Views\QuanLiTinTuc\SuaTinTucView.cshtml" />
     <Content Include="Views\Home\ChuDe.cshtml" />
     <Content Include="Views\Home\ChuDeView.cshtml" />
+    <Content Include="Views\QuanLiTaiKhoan\QLTaiKhoanAdmin.cshtml" />
+    <Content Include="Views\QuanLiTaiKhoan\QLTaiKhoanUser.cshtml" />
+    <Content Include="Views\QuanLiTaiKhoan\SuaThongTinTaiKhoan.cshtml" />
+    <Content Include="Views\QuanLiTaiKhoan\ThemTaiKhoanAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
